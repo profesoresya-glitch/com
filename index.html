@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -149,6 +150,9 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
         }
+        /* Estilo para links de email en footer */
+        footer a { color: #9ca3af; text-decoration: none; }
+        footer a:hover { color: #ffffff; }
 
         /* Móvil */
         @media (max-width: 768px) {
@@ -256,7 +260,11 @@
             </div>
             <div>
                 <h4>Contacto</h4>
-                <p>profesoresonlineya@gmail.com</p>
+                <p style="margin-bottom: 5px;"><strong>Alumnos:</strong><br>
+                <a href="mailto:profesoresonlineya+alumnos@gmail.com">profesoresonlineya+alumnos@gmail.com</a></p>
+                
+                <p style="margin-top: 15px; margin-bottom: 5px;"><strong>Docentes:</strong><br>
+                <a href="mailto:profesoresonlineya+profesores@gmail.com">profesoresonlineya+profesores@gmail.com</a></p>
             </div>
         </div>
     </footer>
