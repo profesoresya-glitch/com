@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProfesoresYa - Clases Online y Presenciales</title>
     <style>
-        /* --- ESTILOS ORIGINALES (Wix Style) --- */
+        /* --- ESTILOS GENERALES --- */
         :root {
             --primary-blue: #1a56db; 
             --dark-text: #1f2937;
@@ -24,7 +24,7 @@
         h1, h2, h3 { color: #111827; }
         a { text-decoration: none; transition: 0.3s; }
         
-        /* BOTONES QUE YA FUNCIONABAN */
+        /* BOTONES */
         .btn {
             padding: 12px 30px;
             border-radius: 50px;
@@ -33,20 +33,27 @@
             cursor: pointer;
             margin-top: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
         }
         .btn-primary {
             background-color: var(--white);
             color: var(--primary-blue);
-            border: 2px solid var(--white);
+            border-color: var(--white);
         }
         .btn-primary:hover { transform: translateY(-2px); }
         
         .btn-outline {
             background-color: transparent;
             color: var(--white);
-            border: 2px solid var(--white);
+            border-color: var(--white);
         }
         .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
+
+        .btn-blue {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        .btn-blue:hover { background-color: #1e40af; }
 
         /* HEADER */
         header {
@@ -62,7 +69,7 @@
         nav ul { list-style: none; display: flex; gap: 20px; padding: 0; }
         nav a { color: var(--dark-text); font-weight: 500; }
 
-        /* --- HERO SECTION (PORTADA) --- */
+        /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
             color: var(--white);
@@ -74,23 +81,15 @@
         }
         .hero-text { flex: 1; min-width: 300px; }
         .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
-        .hero-text p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; }
-        
         .hero-image-container { flex: 1; min-width: 300px; text-align: center; }
-        
-        /* CORRECCIÓN PARA QUE NO SE CORTEN LAS CARAS */
         .hero-image-container img { 
-            width: 100%; 
-            max-width: 600px;
-            height: auto; /* Altura automática para no deformar */
-            border-radius: 15px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 100%; max-width: 600px; height: auto; 
+            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             border: 4px solid rgba(255,255,255,0.2);
-            /* Importante: Esto asegura que se vea toda la foto */
             object-fit: contain; 
         }
 
-        /* --- SECCIÓN EXTRA: ONLINE (Para tu segunda foto) --- */
+        /* ONLINE SECTION */
         .online-section {
             padding: 4rem 5%;
             background: var(--white);
@@ -98,49 +97,23 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 3rem;
-            flex-direction: row-reverse; /* Imagen a la izquierda, texto a la derecha */
+            flex-direction: row-reverse;
         }
         .online-img img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
+            width: 100%; max-width: 500px; border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* --- CÓMO FUNCIONA (Original) --- */
+        /* HOW IT WORKS */
         .how-it-works { background-color: #f8fafc; padding: 4rem 5%; text-align: center; }
-        .steps-container { 
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; 
-        }
-        .step-card {
-            background: var(--white); padding: 2rem; border-radius: 16px; width: 280px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .step-number { 
-            background: var(--primary-blue); color: var(--white); 
-            width: 40px; height: 40px; border-radius: 50%; 
-            display: flex; justify-content: center; align-items: center; 
-            font-weight: bold; margin: 0 auto 1rem auto;
-        }
+        .steps-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
+        .step-card { background: var(--white); padding: 2rem; border-radius: 16px; width: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .step-number { background: var(--primary-blue); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin: 0 auto 1rem auto; }
 
-        /* --- CALIFICACIÓN (Con tu foto de estrellas) --- */
+        /* REVIEWS */
         .reviews { padding: 4rem 5%; text-align: center; background: var(--white); }
-        .review-card {
-            background: #f9fafb;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 700px;
-            border-radius: 20px;
-            border: 1px solid #e5e7eb;
-        }
-        .review-img {
-            width: 100%;
-            max-width: 400px; /* Tamaño controlado */
-            height: 200px;
-            object-fit: cover; /* Aquí sí recortamos un poco para que quede tipo banner */
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
+        .review-card { background: #f9fafb; padding: 2rem; margin: 2rem auto; max-width: 700px; border-radius: 20px; border: 1px solid #e5e7eb; }
+        .review-img { width: 100%; max-width: 400px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1.5rem; }
         .star-rating { color: var(--gold); font-size: 2rem; cursor: pointer; }
 
         /* FOOTER */
@@ -148,6 +121,59 @@
         footer a { color: #9ca3af; text-decoration: none; }
         footer a:hover { color: var(--white); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+
+        /* --- ESTILOS DEL MODAL (VENTANA EMERGENTE) --- */
+        .modal-overlay {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Fondo oscuro transparente */
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .modal-content h3 { color: var(--primary-blue); margin-top: 0; }
+        .checkbox-container {
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+        .checkbox-container input { width: 20px; height: 20px; cursor: pointer; }
+        
+        /* Botón desactivado (gris) */
+        #btnContinuar {
+            background-color: #ccc; 
+            cursor: not-allowed;
+            pointer-events: none;
+            width: 100%;
+        }
+        /* Botón activado (azul) */
+        #btnContinuar.active {
+            background-color: var(--primary-blue);
+            cursor: pointer;
+            pointer-events: auto;
+        }
+        .close-modal {
+            margin-top: 1rem;
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
 
         @media (max-width: 768px) {
             .hero { flex-direction: column-reverse; text-align: center; }
@@ -157,6 +183,25 @@
     </style>
 </head>
 <body>
+
+    <div id="legalModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Antes de continuar</h3>
+            <p>Para acceder al servicio, es necesario que leas y aceptes nuestros términos legales.</p>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="acceptCheck">
+                <label for="acceptCheck">
+                    He leído y acepto los <a id="termsLink" href="#" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">Términos y Condiciones</a>.
+                </label>
+            </div>
+
+            <a id="btnContinuar" class="btn btn-blue" href="#" target="_blank">Continuar al Formulario</a>
+            
+            <span class="close-modal" onclick="cerrarModal()">Cancelar</span>
+        </div>
+    </div>
+
 
     <header>
         <div class="logo">🎓 ProfesoresYa</div>
@@ -174,8 +219,8 @@
             <h1>Encontrá tu profe ideal: Presencial y Online</h1>
             <p>Conectamos estudiantes con docentes apasionados. Clases particulares para todos los niveles, en tu casa o por Zoom. Sin intermediarios.</p>
             <div>
-                <a href="https://forms.gle/q6p2hujs4EWN7Qew6" target="_blank" class="btn btn-primary">Soy Estudiante</a>
-                <a href="https://forms.gle/JqQvMDWGmhAWMKR36" target="_blank" class="btn btn-outline">Soy Docente</a>
+                <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
+                <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
             </div>
         </div>
         <div class="hero-image-container">
@@ -187,7 +232,7 @@
         <div class="hero-text">
             <h2 style="color: var(--primary-blue); font-size: 2.5rem;">También Modalidad Online</h2>
             <p>¿Prefieres estudiar desde casa? Conecta con profesores expertos a través de videollamada. Ahorra tiempo y aprende con la misma calidad.</p>
-            <a href="https://forms.gle/q6p2hujs4EWN7Qew6" target="_blank" class="btn" style="background: var(--primary-blue); color: white;">Buscar Profe Online</a>
+            <button onclick="abrirModal('alumno')" class="btn btn-blue">Buscar Profe Online</button>
         </div>
         <div class="online-img">
             <img src="clase-online.jpg" alt="Clases Online">
@@ -199,8 +244,8 @@
         <div class="steps-container">
             <div class="step-card">
                 <div class="step-number">1</div>
-                <h3>Completa el Formulario</h3>
-                <p>Indica qué materia necesitas y tu modalidad preferida.</p>
+                <h3>Acepta y Regístrate</h3>
+                <p>Lee los términos, acepta las condiciones y completa tu formulario seguro.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">2</div>
@@ -219,18 +264,14 @@
         <h2>Tu opinión nos importa</h2>
         <div class="review-card">
             <img src="estrellas.jpg" alt="Califica tu experiencia" class="review-img">
-            
             <h3>Calificá la clase que recibiste</h3>
             <p>Ayuda a otros estudiantes compartiendo tu experiencia.</p>
-            
-            <div class="star-rating">
-                ★★★★★
-            </div>
+            <div class="star-rating">★★★★★</div>
             <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">(Sistema de calificación próximamente)</p>
         </div>
     </section>
 
-   <footer id="contacto">
+    <footer id="contacto">
         <div class="footer-grid">
             <div>
                 <div class="logo" style="color: white; margin-bottom: 1rem;">🎓 ProfesoresYa</div>
@@ -250,6 +291,56 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Links de Google Forms
+        const linkAlumno = "https://forms.gle/q6p2hujs4EWN7Qew6";
+        const linkDocente = "https://forms.gle/JqQvMDWGmhAWMKR36";
+        
+        // Elementos del Modal
+        const modal = document.getElementById('legalModal');
+        const termsLink = document.getElementById('termsLink');
+        const btnContinuar = document.getElementById('btnContinuar');
+        const check = document.getElementById('acceptCheck');
+
+        function abrirModal(tipo) {
+            // Reseteamos el checkbox y el botón cada vez que se abre
+            check.checked = false;
+            btnContinuar.classList.remove('active');
+            
+            // Configuramos los links según quién hizo clic
+            if (tipo === 'alumno') {
+                termsLink.href = "terminos-alumnos.html"; // Link al archivo de términos
+                btnContinuar.href = linkAlumno;           // Destino final: Formulario Alumno
+            } else {
+                termsLink.href = "terminos-docentes.html"; // Link al archivo de términos
+                btnContinuar.href = linkDocente;           // Destino final: Formulario Docente
+            }
+
+            // Mostramos el modal
+            modal.style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            modal.style.display = 'none';
+        }
+
+        // Lógica del Checkbox: Si toca, se activa el botón
+        check.addEventListener('change', function() {
+            if (this.checked) {
+                btnContinuar.classList.add('active'); // Se pone azul y clickeable
+            } else {
+                btnContinuar.classList.remove('active'); // Se pone gris y bloqueado
+            }
+        });
+
+        // Cerrar si hace clic fuera del cuadrito blanco
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+    </script>
 
 </body>
 </html>
