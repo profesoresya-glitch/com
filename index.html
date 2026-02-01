@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProfesoresYa - Clases a tu Medida</title>
+    <title>ProfesoresYa - Clases Online y Presenciales</title>
     <style>
-        /* COLORES Y VARIABLES */
+        /* --- ESTILOS ORIGINALES (Wix Style) --- */
         :root {
             --primary-blue: #1a56db; 
             --dark-text: #1f2937;
             --white: #ffffff;
-            --light-bg: #f3f4f6;
+            --light-bg: #f9fafb;
             --gold: #ffc107;
         }
         body {
@@ -21,153 +21,140 @@
             line-height: 1.6;
             background-color: var(--white);
         }
-        a { text-decoration: none; }
+        h1, h2, h3 { color: #111827; }
+        a { text-decoration: none; transition: 0.3s; }
         
-        /* BOTONES */
+        /* BOTONES QUE YA FUNCIONABAN */
         .btn {
-            padding: 10px 24px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 600;
             display: inline-block;
             cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
-            border: 2px solid transparent;
             margin-top: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .btn-primary {
-            background-color: var(--primary-blue);
-            color: var(--white);
-        }
-        .btn-primary:hover { background-color: #1e40af; }
-        .btn-outline {
-            border: 2px solid var(--primary-blue);
+            background-color: var(--white);
             color: var(--primary-blue);
-            background: transparent;
+            border: 2px solid var(--white);
         }
-        .btn-outline:hover { background: #eef2ff; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
 
         /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 1.5rem 5%;
             background: var(--white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 100;
         }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); }
         nav ul { list-style: none; display: flex; gap: 20px; padding: 0; }
         nav a { color: var(--dark-text); font-weight: 500; }
-        nav a:hover { color: var(--primary-blue); }
 
-        /* INTRODUCCIÓN */
-        .intro {
-            text-align: center;
-            padding: 3rem 5% 1rem 5%;
-            background: var(--white);
-        }
-        .intro h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #111827; }
-        .intro p { font-size: 1.1rem; color: #6b7280; max-width: 700px; margin: 0 auto; }
-
-        /* SECCIÓN PRINCIPAL: TRES TARJETAS */
-        .main-grid {
-            padding: 2rem 5% 5rem 5%;
-            background: var(--white);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e5e7eb;
+        /* --- HERO SECTION (PORTADA) --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 4rem 5%;
             display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* CONTENEDOR DE IMAGEN */
-        .card-image {
-            height: 220px;
-            width: 100%;
-            overflow: hidden;
-            background-color: #f0f0f0; /* Fondo gris porsiaca tarda en cargar */
-        }
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ajusta la imagen perfecto al recuadro */
-            transition: transform 0.5s;
-        }
-        .card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             align-items: center;
-            text-align: center;
+            gap: 3rem;
+        }
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
+        .hero-text p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; }
+        
+        .hero-image-container { flex: 1; min-width: 300px; text-align: center; }
+        
+        /* CORRECCIÓN PARA QUE NO SE CORTEN LAS CARAS */
+        .hero-image-container img { 
+            width: 100%; 
+            max-width: 600px;
+            height: auto; /* Altura automática para no deformar */
+            border-radius: 15px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 4px solid rgba(255,255,255,0.2);
+            /* Importante: Esto asegura que se vea toda la foto */
+            object-fit: contain; 
         }
 
-        .card-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; color: #111827; }
-        .card-text { color: #4b5563; margin-bottom: 1.5rem; font-size: 0.95rem; }
-        
-        /* ESTRELLAS */
-        .star-rating {
-            font-size: 2rem;
-            color: #d1d5db;
-            cursor: pointer;
-            margin-bottom: 1rem;
+        /* --- SECCIÓN EXTRA: ONLINE (Para tu segunda foto) --- */
+        .online-section {
+            padding: 4rem 5%;
+            background: var(--white);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            flex-direction: row-reverse; /* Imagen a la izquierda, texto a la derecha */
         }
-        .star-rating .star:hover,
-        .star-rating .star.active {
-            color: var(--gold);
+        .online-img img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+
+        /* --- CÓMO FUNCIONA (Original) --- */
+        .how-it-works { background-color: #f8fafc; padding: 4rem 5%; text-align: center; }
+        .steps-container { 
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; 
+        }
+        .step-card {
+            background: var(--white); padding: 2rem; border-radius: 16px; width: 280px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .step-number { 
+            background: var(--primary-blue); color: var(--white); 
+            width: 40px; height: 40px; border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; 
+            font-weight: bold; margin: 0 auto 1rem auto;
+        }
+
+        /* --- CALIFICACIÓN (Con tu foto de estrellas) --- */
+        .reviews { padding: 4rem 5%; text-align: center; background: var(--white); }
+        .review-card {
+            background: #f9fafb;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+        }
+        .review-img {
+            width: 100%;
+            max-width: 400px; /* Tamaño controlado */
+            height: 200px;
+            object-fit: cover; /* Aquí sí recortamos un poco para que quede tipo banner */
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        .star-rating { color: var(--gold); font-size: 2rem; cursor: pointer; }
 
         /* FOOTER */
-        footer { background: #1f2937; color: #d1d5db; padding: 3rem 5%; font-size: 0.9rem; margin-top: auto; }
+        footer { background: #111827; color: #d1d5db; padding: 4rem 5%; }
         footer a { color: #9ca3af; text-decoration: none; }
         footer a:hover { color: var(--white); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
 
         @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .online-section { flex-direction: column; text-align: center; }
             nav { display: none; }
-            .intro h1 { font-size: 2rem; }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const stars = document.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                star.addEventListener('mouseover', () => {
-                    stars.forEach((s, i) => {
-                        if (i <= index) s.classList.add('active');
-                        else s.classList.remove('active');
-                    });
-                });
-                star.addEventListener('click', () => {
-                   alert('¡Gracias por tu interés! Muy pronto podrás dejar reseñas reales.');
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -176,71 +163,81 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="#docentes">Soy Docente</a></li>
+                <li><a href="#como-funciona">Cómo Funciona</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="intro">
-        <h1>Elige cómo quieres aprender</h1>
-        <p>Conectamos alumnos y profesores de forma directa, segura y sin comisiones.</p>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Encontrá tu profe ideal: Presencial y Online</h1>
+            <p>Conectamos estudiantes con docentes apasionados. Clases particulares para todos los niveles, en tu casa o por Zoom. Sin intermediarios.</p>
+            <div>
+                <a href="https://forms.gle/q6p2hujs4EWN7Qew6" target="_blank" class="btn btn-primary">Soy Estudiante</a>
+                <a href="https://forms.gle/JqQvMDWGmhAWMKR36" target="_blank" class="btn btn-outline">Soy Docente</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="clase-presencial.PNG" alt="Clases presenciales">
+        </div>
     </section>
 
-    <section class="main-grid">
-        
-        <div class="card">
-            <div class="card-image">
-                <img src="clase-presencial.PNG" alt="Clase particular presencial">
+    <section class="online-section">
+        <div class="hero-text">
+            <h2 style="color: var(--primary-blue); font-size: 2.5rem;">También Modalidad Online</h2>
+            <p>¿Prefieres estudiar desde casa? Conecta con profesores expertos a través de videollamada. Ahorra tiempo y aprende con la misma calidad.</p>
+            <a href="https://forms.gle/q6p2hujs4EWN7Qew6" target="_blank" class="btn" style="background: var(--primary-blue); color: white;">Buscar Profe Online</a>
+        </div>
+        <div class="online-img">
+            <img src="clase-online.jpg" alt="Clases Online">
+        </div>
+    </section>
+
+    <section class="how-it-works" id="como-funciona">
+        <h2>Cómo Funciona</h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Completa el Formulario</h3>
+                <p>Indica qué materia necesitas y tu modalidad preferida.</p>
             </div>
-            <div class="card-content">
-                <div class="card-title">Clases Presenciales</div>
-                <p class="card-text">Encuentra un profesor cerca de tu domicilio. Ideal para un aprendizaje personalizado cara a cara.</p>
-                <a href="https://forms.gle/q6p2hujs4EWN7Qew6" target="_blank" class="btn btn-primary">Buscar Profe</a>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Conexión Directa</h3>
+                <p>Te ponemos en contacto con el profesor ideal para ti.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Coordina y Aprende</h3>
+                <p>Acuerda horarios y precios directamente con el docente.</p>
             </div>
         </div>
+    </section>
 
-        <div class="card">
-            <div class="card-image">
-                <img src="clase-online.jpg" alt="Clase virtual online">
+    <section class="reviews">
+        <h2>Tu opinión nos importa</h2>
+        <div class="review-card">
+            <img src="estrellas.jpg" alt="Califica tu experiencia" class="review-img">
+            
+            <h3>Calificá la clase que recibiste</h3>
+            <p>Ayuda a otros estudiantes compartiendo tu experiencia.</p>
+            
+            <div class="star-rating">
+                ★★★★★
             </div>
-            <div class="card-content">
-                <div class="card-title">Clases Online</div>
-                <p class="card-text">Estudia desde la comodidad de tu casa con profesores expertos a través de videollamada.</p>
-                <a href="https://forms.gle/q6p2hujs4EWN7Qew6" target="_blank" class="btn btn-outline">Buscar Profe Online</a>
-            </div>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">(Sistema de calificación próximamente)</p>
         </div>
-
-        <div class="card">
-            <div class="card-image">
-                <img src="estrellas.jpg" alt="Califica tu clase">
-            </div>
-            <div class="card-content">
-                <div class="card-title">Calificá tu Clase</div>
-                <p class="card-text">Tu opinión importa. Valora a tu profesor después de la clase para ayudar a la comunidad.</p>
-                
-                <div class="star-rating">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                </div>
-                
-                <p style="font-size: 0.8rem; color: #999;">Haz clic en las estrellas</p>
-            </div>
-        </div>
-
     </section>
 
     <footer id="contacto">
         <div class="footer-grid">
             <div>
-                <h4>ProfesoresYa</h4>
+                <div class="logo" style="color: white; margin-bottom: 1rem;">🎓 ProfesoresYa</div>
                 <p>© 2026 Todos los derechos reservados.</p>
             </div>
             <div>
-                <h4>Contacto Alumnos</h4>
+                <h4>Contacto Estudiantes</h4>
                 <p><a href="mailto:profesoresonlineya+alumnos@gmail.com">profesoresonlineya+alumnos@gmail.com</a></p>
             </div>
             <div>
