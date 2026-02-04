@@ -117,11 +117,10 @@
         .star-rating { color: var(--gold); font-size: 2rem; cursor: pointer; }
 
         /* FOOTER */
-        footer { background: #111827; color: #d1d5db; padding: 4rem 5%; }
+        footer { background: #111827; color: #d1d5db; padding: 4rem 5%; text-align: center; }
         footer a { color: #9ca3af; text-decoration: none; }
         footer a:hover { color: var(--white); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-
+        
         /* --- ESTILOS DEL MODAL (VENTANA EMERGENTE) --- */
         .modal-overlay {
             display: none; /* Oculto por defecto */
@@ -209,7 +208,8 @@
             <ul>
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#como-funciona">Cómo Funciona</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="#contacto">Dudas</a></li>
             </ul>
         </nav>
     </header>
@@ -271,25 +271,53 @@
         </div>
     </section>
 
-    <footer id="contacto">
-        <div class="footer-grid">
-            <div>
-                <div class="logo" style="color: white; margin-bottom: 1rem;">🎓 ProfesoresYa</div>
-                <p>© 2026 Todos los derechos reservados.</p>
-                <p style="margin-top: 15px; font-size: 0.8rem;">
-                    <a href="terminos-alumnos.html" target="_blank" style="text-decoration: underline; color: #9ca3af;">Términos Alumnos</a> <br>
-                    <a href="terminos-docentes.html" target="_blank" style="text-decoration: underline; color: #9ca3af;">Términos Docentes</a>
-                </p>
+    <section id="faq" style="padding: 60px 20px; background-color: #f9f9f9; text-align: left;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="text-align: center; color: #333; margin-bottom: 40px;">Preguntas Frecuentes</h2>
+
+            <div style="margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">👩‍🏫 Para Docentes</h3>
+                <p><strong>¿Cobran comisión por alumno?</strong><br>
+                No. El trato y el pago son 100% directos entre vos y el alumno.</p>
+                <p><strong>¿Es gratis publicar mi perfil?</strong><br>
+                Sí. Podés sumarte a la base de datos de forma gratuita. Más adelante podrás destacar tu anuncio si querés.</p>
             </div>
-            <div>
-                <h4>Contacto Estudiantes</h4>
-                <p><a href="mailto:profesoresonlineya+alumnos@gmail.com">profesoresonlineya+alumnos@gmail.com</a></p>
-            </div>
-            <div>
-                <h4>Contacto Docentes</h4>
-                <p><a href="mailto:profesoresonlineya+profesores@gmail.com">profesoresonlineya+profesores@gmail.com</a></p>
+
+            <div style="margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">👨‍🎓 Para Alumnos y Padres</h3>
+                <p><strong>¿Los profesores están verificados?</strong><br>
+                Sí. Validamos la identidad y los datos de contacto para tu seguridad.</p>
+                <p><strong>¿Cómo pago la clase?</strong><br>
+                Pagás directamente al profesor (Efectivo, Transferencia, etc.) al terminar la clase.</p>
             </div>
         </div>
+    </section>
+
+    <section id="contacto" style="padding: 60px 20px; text-align: center; background-color: #fff;">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333;">¿Todavía tenés dudas?</h2>
+            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
+                Si no encontraste la respuesta arriba, envianos tu consulta específica.
+            </p>
+            
+            <a href="https://forms.gle/kwfYyYatBuM8jzXo7" target="_blank" 
+               style="background-color: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1em; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background-color 0.3s;">
+               📩 Enviar Consulta al Equipo
+            </a>
+            
+            <p style="margin-top: 25px; font-size: 0.9em; color: #888; font-style: italic;">
+                Nota: No publicamos nuestro email directo para poder gestionar y responder tu consulta mucho más rápido a través del sistema.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="color: white; margin-bottom: 1rem;">🎓 ProfesoresYa</div>
+        <p>© 2026 Todos los derechos reservados.</p>
+        <p style="margin-top: 15px; font-size: 0.8rem;">
+            <a href="terminos-alumnos.html" target="_blank" style="text-decoration: underline; color: #9ca3af;">Términos Alumnos</a> |
+            <a href="terminos-docentes.html" target="_blank" style="text-decoration: underline; color: #9ca3af;">Términos Docentes</a>
+        </p>
     </footer>
 
     <script>
@@ -341,6 +369,5 @@
             }
         }
     </script>
-
 </body>
 </html>
