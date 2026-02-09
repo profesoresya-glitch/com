@@ -13,9 +13,12 @@
         .search-container { max-width: 600px; margin: -25px auto 0; padding: 0 5%; }
         #buscador { width: 100%; padding: 15px 25px; border-radius: 50px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-size: 1.1rem; outline: none; }
         .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; }
-        .btn-perfil { background: var(--primary-blue); color: white; padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
-        .stars { color: #ffc107; font-weight: bold; margin-bottom: 10px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .btn-perfil { background: var(--primary-blue); color: white; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
+        .stars { color: #ffc107; font-size: 1.2rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .materia-tag { font-weight: bold; color: var(--primary-blue); margin: 5px 0; font-size: 1.1rem; }
+        .ciudad-tag { font-size: 0.9em; color: #666; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -26,11 +29,11 @@
 
     <section class="hero">
         <h1>Encontrá tu profe ideal</h1>
-        <p>Buscá por materia o ciudad y conectá directo.</p>
+        <p>Buscá por materia, nombre o ciudad.</p>
     </section>
 
     <div class="search-container">
-        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Ej: Matemática, Inglés, Buenos Aires...">
+        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Buscá ej: fisica, ingles, buenos aires...">
     </div>
 
     <section id="profesores-listado">
@@ -43,44 +46,59 @@
         const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         let profesoresData = [];
 
+        // Función para quitar tildes y normalizar texto
+        const normalizar = (texto) => {
+            return (texto || "").toString()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .trim();
+        };
+
         fetch(URL_SHEET)
         .then(r => r.json())
         .then(data => {
             profesoresData = data;
             renderProfes(data);
+        })
+        .catch(err => {
+            document.getElementById("contenedor-profes").innerHTML = "Error al conectar con la base de datos.";
         });
 
         function renderProfes(lista) {
             const div = document.getElementById("contenedor-profes");
             if (lista.length === 0) {
-                div.innerHTML = "<p>No se encontraron profesores.</p>";
+                div.innerHTML = "<p>No se encontraron resultados para tu búsqueda.</p>";
                 return;
             }
             div.innerHTML = lista.map(p => `
                 <div class="card">
                     <div class="stars">${p.tipo || "⭐⭐⭐⭐⭐"}</div>
                     <h3 style="margin: 0;">${p.nombre} ${p.apellido}</h3>
-                    <p style="font-weight: bold; color: var(--primary-blue);">${p.titulo}</p>
-                    <p style="font-size: 0.9em; color: #666;">📍 ${p.ciudad}</p>
+                    <p class="materia-tag">${p.titulo}</p>
+                    <p class="ciudad-tag">📍 ${p.ciudad}</p>
                     <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil Completo</a>
                 </div>
             `).join("");
         }
 
-        // LÓGICA DEL BUSCADOR
         function filtrar() {
-            const termino = document.getElementById("buscador").value.toLowerCase();
-            const filtrados = profesoresData.filter(p => 
-                p.nombre.toLowerCase().includes(termino) || 
-                p.apellido.toLowerCase().includes(termino) || 
-                p.titulo.toLowerCase().includes(termino) || 
-                p.ciudad.toLowerCase().includes(termino)
-            );
+            const buscador = document.getElementById("buscador");
+            const termino = normalizar(buscador.value);
+
+            const filtrados = profesoresData.filter(p => {
+                const nombreCompleto = normalizar(`${p.nombre} ${p.apellido}`);
+                const materia = normalizar(p.titulo);
+                const ciudad = normalizar(p.ciudad);
+                const descripcion = normalizar(p.descripcion);
+                
+                return nombreCompleto.includes(termino) || 
+                       materia.includes(termino) || 
+                       ciudad.includes(termino) ||
+                       descripcion.includes(termino);
+            });
+            
             renderProfes(filtrados);
-        }
-    </script>
-</body>
-</html>
         }
     </script>
 </body>
