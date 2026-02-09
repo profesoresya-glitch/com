@@ -5,180 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProfesoresYa - Clases Online y Presenciales</title>
     <style>
-        /* --- ESTILOS GENERALES --- */
-        :root {
-            --primary-blue: #1a56db; 
-            --dark-text: #1f2937;
-            --white: #ffffff;
-            --light-bg: #f9fafb;
-            --gold: #ffc107;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--dark-text);
-            line-height: 1.6;
-            background-color: var(--white);
-        }
-        h1, h2, h3 { color: #111827; }
-        a { text-decoration: none; transition: 0.3s; }
-        
-        /* BOTONES */
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-block;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 2px solid transparent;
-        }
-        .btn-primary {
-            background-color: var(--white);
-            color: var(--primary-blue);
-            border-color: var(--white);
-        }
-        .btn-primary:hover { transform: translateY(-2px); }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: var(--white);
-            border-color: var(--white);
-        }
-        .btn-outline:hover { background-color: rgba(255,255,255,0.1); }
-
-        .btn-blue {
-            background-color: var(--primary-blue);
-            color: var(--white);
-        }
-        .btn-blue:hover { background-color: #1e40af; }
-
-        /* HEADER */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            background: var(--white);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 100;
-        }
+        :root { --primary-blue: #1a56db; --dark-text: #1f2937; --white: #ffffff; --light-bg: #f9fafb; --gold: #ffc107; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; color: var(--dark-text); background-color: var(--white); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); }
-        nav ul { list-style: none; display: flex; gap: 20px; padding: 0; }
-        nav a { color: var(--dark-text); font-weight: 500; }
-
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
-            color: var(--white);
-            padding: 4rem 5%;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 3rem;
-        }
+        .hero { background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%); color: var(--white); padding: 4rem 5%; display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; }
         .hero-text { flex: 1; min-width: 300px; }
-        .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
-        .hero-image-container { flex: 1; min-width: 300px; text-align: center; }
-        .hero-image-container img { 
-            width: 100%; max-width: 600px; height: auto; 
-            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            border: 4px solid rgba(255,255,255,0.2);
-            object-fit: contain; 
-        }
-
-        /* ONLINE SECTION */
-        .online-section {
-            padding: 4rem 5%;
-            background: var(--white);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 3rem;
-            flex-direction: row-reverse;
-        }
-        .online-img img {
-            width: 100%; max-width: 500px; border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* HOW IT WORKS */
-        .how-it-works { background-color: #f8fafc; padding: 4rem 5%; text-align: center; }
-        .steps-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
-        .step-card { background: var(--white); padding: 2rem; border-radius: 16px; width: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .step-number { background: var(--primary-blue); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin: 0 auto 1rem auto; }
-
-        /* REVIEWS */
-        .reviews { padding: 4rem 5%; text-align: center; background: var(--white); }
-        .review-card { background: #f9fafb; padding: 2rem; margin: 2rem auto; max-width: 700px; border-radius: 20px; border: 1px solid #e5e7eb; }
-        .review-img { width: 100%; max-width: 400px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1.5rem; }
-        .star-rating { color: var(--gold); font-size: 2rem; cursor: pointer; }
-
-        /* FOOTER */
+        .btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; display: inline-block; cursor: pointer; border: 2px solid transparent; text-decoration: none; }
+        .btn-primary { background-color: var(--white); color: var(--primary-blue); }
+        .btn-blue { background-color: var(--primary-blue); color: var(--white); }
+        .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); text-align: left; }
         footer { background: #111827; color: #d1d5db; padding: 4rem 5%; text-align: center; }
-        footer a { color: #9ca3af; text-decoration: none; }
-        footer a:hover { color: var(--white); }
-        
-        /* --- ESTILOS DEL MODAL (VENTANA EMERGENTE) --- */
-        .modal-overlay {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Fondo oscuro transparente */
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .modal-content h3 { color: var(--primary-blue); margin-top: 0; }
-        .checkbox-container {
-            margin: 1.5rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 0.95rem;
-            text-align: left;
-        }
-        .checkbox-container input { width: 20px; height: 20px; cursor: pointer; }
-        
-        /* Botón desactivado (gris) */
-        #btnContinuar {
-            background-color: #ccc; 
-            cursor: not-allowed;
-            pointer-events: none;
-            width: 100%;
-        }
-        /* Botón activado (azul) */
-        #btnContinuar.active {
-            background-color: var(--primary-blue);
-            cursor: pointer;
-            pointer-events: auto;
-        }
-        .close-modal {
-            margin-top: 1rem;
-            display: block;
-            color: #666;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .hero { flex-direction: column-reverse; text-align: center; }
-            .online-section { flex-direction: column; text-align: center; }
-            nav { display: none; }
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; }
+        #btnContinuar { background-color: #ccc; cursor: not-allowed; pointer-events: none; width: 100%; display: block; margin-top: 10px; color: white; }
+        #btnContinuar.active { background-color: var(--primary-blue); cursor: pointer; pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -187,217 +29,92 @@
         <div class="modal-content">
             <h3>Antes de continuar</h3>
             <p>Para acceder al servicio, es necesario que leas y aceptes nuestros términos legales.</p>
-            
-            <div class="checkbox-container">
+            <div style="margin: 1.5rem 0;">
                 <input type="checkbox" id="acceptCheck">
-                <label for="acceptCheck">
-                    He leído y acepto los <a id="termsLink" href="#" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">Términos y Condiciones</a>.
-                </label>
+                <label for="acceptCheck">He leído y acepto los <a id="termsLink" href="#" target="_blank">Términos y Condiciones</a>.</label>
             </div>
-
-            <a id="btnContinuar" class="btn btn-blue" href="#" target="_blank">Continuar al Formulario</a>
-            
-            <span class="close-modal" onclick="cerrarModal()">Cancelar</span>
+            <a id="btnContinuar" class="btn" href="#">Continuar</a>
+            <span style="cursor:pointer; display:block; margin-top:10px; color: #666;" onclick="cerrarModal()">Cancelar</span>
         </div>
     </div>
 
-
     <header>
         <div class="logo">🎓 ProfesoresYa</div>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#como-funciona">Cómo Funciona</a></li>
-                <li><a href="#faq">Preguntas Frecuentes</a></li>
-                <li><a href="#contacto">Dudas</a></li>
-            </ul>
-        </nav>
     </header>
 
     <section class="hero">
         <div class="hero-text">
-            <h1>Encontrá tu profe ideal: Presencial y Online</h1>
-            <p>Conectamos estudiantes con docentes apasionados. Clases particulares para todos los niveles, en tu casa o por Zoom. Sin intermediarios.</p>
-            <div>
-                <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
-                <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
-            </div>
-        </div>
-        <div class="hero-image-container">
-            <img src="clase-presencial.PNG" alt="Clases presenciales">
+            <h1>Encontrá tu profe ideal</h1>
+            <p>Conectamos estudiantes con docentes apasionados. Sin intermediarios.</p>
+            <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
+            <button onclick="abrirModal('docente')" class="btn btn" style="color: white; border-color: white;">Soy Docente</button>
         </div>
     </section>
 
-    <section class="online-section">
-        <div class="hero-text">
-            <h2 style="color: var(--primary-blue); font-size: 2.5rem;">También Modalidad Online</h2>
-            <p>¿Prefieres estudiar desde casa? Conecta con profesores expertos a través de videollamada. Ahorra tiempo y aprende con la misma calidad.</p>
-            <button onclick="abrirModal('alumno')" class="btn btn-blue">Buscar Profe Online</button>
-        </div>
-        <div class="online-img">
-            <img src="clase-online.jpg" alt="Clases Online">
-        </div>
-    </section>
     <section id="profesores-listado" style="padding: 4rem 5%; background: #f0f2f5; text-align: center;">
-    <h2 style="color: #1a56db; font-size: 2.5rem; margin-bottom: 30px;">Profesores Disponibles</h2>
-    <div id="contenedor-profes" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto;">
-        <p>Cargando lista de profesores...</p>
-    </div>
-</section>
-
-<script>
-    const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-
-    fetch(URL_SHEET)
-    .then(r => r.json())
-    .then(data => {
-        const div = document.getElementById("contenedor-profes");
-        if (!data || data.length === 0) {
-            div.innerHTML = "<p>Próximamente más profesores disponibles.</p>";
-            return;
-        }
-        div.innerHTML = data.map(p => `
-            <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid ${p.ranking >= 1000 ? '#ffc107' : '#1a56db'}; text-align: left;">
-                <h3 style="margin: 0; color: #1a56db;">${p.nombre} ${p.apellido}</h3>
-                <p style="font-weight: bold; margin: 8px 0; color: #333;">${p.titulo}</p>
-                <p style="font-size: 0.85em; color: #666; margin-bottom: 15px;">📍 ${p.ciudad} | 💻 ${p.tipo}</p>
-                <a href="aviso.html?id=${p.id}" style="background: #1a56db; color: white; padding: 10px; border-radius: 8px; text-decoration: none; display: block; text-align: center; font-weight: bold; font-size: 0.9em;">Ver Perfil Completo</a>
-            </div>
-        `).join("");
-    })
-    .catch(err => {
-        document.getElementById("contenedor-profes").innerHTML = "Estamos actualizando la lista de profesores.";
-    });
-</script>
-
-    <section class="how-it-works" id="como-funciona">
-        <h2>Cómo Funciona</h2>
-        <div class="steps-container">
-            <div class="step-card">
-                <div class="step-number">1</div>
-                <h3>Acepta y Regístrate</h3>
-                <p>Lee los términos, acepta las condiciones y completa tu formulario seguro.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">2</div>
-                <h3>Conexión Directa</h3>
-                <p>Te ponemos en contacto con el profesor ideal para ti.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">3</div>
-                <h3>Coordina y Aprende</h3>
-                <p>Acuerda horarios y precios directamente con el docente.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="reviews">
-        <h2>Tu opinión nos importa</h2>
-        <div class="review-card">
-            <img src="estrellas.jpg" alt="Califica tu experiencia" class="review-img">
-            <h3>Calificá la clase que recibiste</h3>
-            <p>Ayuda a otros estudiantes compartiendo tu experiencia.</p>
-            <div class="star-rating">★★★★★</div>
-            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">(Sistema de calificación próximamente)</p>
-        </div>
-    </section>
-
-    <section id="faq" style="padding: 60px 20px; background-color: #f9f9f9; text-align: left;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="text-align: center; color: #333; margin-bottom: 40px;">Preguntas Frecuentes</h2>
-
-            <div style="margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h3 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">👩‍🏫 Para Docentes</h3>
-                <p><strong>¿Cobran comisión por alumno?</strong><br>
-                No. El trato y el pago son 100% directos entre vos y el alumno.</p>
-                <p><strong>¿Es gratis publicar mi perfil?</strong><br>
-                Sí. Podés sumarte a la base de datos de forma gratuita. Más adelante podrás destacar tu anuncio si querés.</p>
-            </div>
-
-            <div style="margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h3 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">👨‍🎓 Para Alumnos y Padres</h3>
-                <p><strong>¿Los profesores están verificados?</strong><br>
-                Sí. Validamos la identidad y los datos de contacto para tu seguridad.</p>
-                <p><strong>¿Cómo pago la clase?</strong><br>
-                Pagás directamente al profesor (Efectivo, Transferencia, etc.) al terminar la clase.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" style="padding: 60px 20px; text-align: center; background-color: #fff;">
-        <div style="max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">¿Todavía tenés dudas?</h2>
-            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
-                Si no encontraste la respuesta arriba, envianos tu consulta específica.
-            </p>
-            
-            <a href="https://forms.gle/kwfYyYatBuM8jzXo7" target="_blank" 
-               style="background-color: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1em; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background-color 0.3s;">
-               📩 Enviar Consulta al Equipo
-            </a>
-            
-            <p style="margin-top: 25px; font-size: 0.9em; color: #888; font-style: italic;">
-                Nota: No publicamos nuestro email directo para poder gestionar y responder tu consulta mucho más rápido a través del sistema.
-            </p>
+        <h2 style="color: #1a56db; margin-bottom: 30px;">Profesores Disponibles</h2>
+        <div id="contenedor-profes" class="grid-profes">
+            <p>Cargando lista de profesores...</p>
         </div>
     </section>
 
     <footer>
-        <div class="logo" style="color: white; margin-bottom: 1rem;">🎓 ProfesoresYa</div>
-        <p>© 2026 Todos los derechos reservados.</p>
-        <p style="margin-top: 15px; font-size: 0.8rem;">
-            <a href="terminos-alumnos.html" target="_blank" style="text-decoration: underline; color: #9ca3af;">Términos Alumnos</a> |
-            <a href="terminos-docentes.html" target="_blank" style="text-decoration: underline; color: #9ca3af;">Términos Docentes</a>
-        </p>
+        <p>© 2026 ProfesoresYa - Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Links de Google Forms
-        const linkAlumno = "https://forms.gle/q6p2hujs4EWN7Qew6";
-        const linkDocente = "https://forms.gle/JqQvMDWGmhAWMKR36";
-        
-        // Elementos del Modal
+        const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
+
+        // Cargar Profesores
+        fetch(URL_SHEET)
+        .then(r => r.json())
+        .then(data => {
+            const div = document.getElementById("contenedor-profes");
+            if (!data || data.length === 0) {
+                div.innerHTML = "<p>Próximamente más profesores disponibles.</p>";
+                return;
+            }
+            div.innerHTML = data.map(p => `
+                <div class="card">
+                    <h3 style="margin: 0; color: #1a56db;">${p.nombre} ${p.apellido}</h3>
+                    <p style="font-weight: bold; margin: 8px 0; color: #333;">${p.titulo}</p>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 15px;">📍 ${p.ciudad} | 💻 ${p.tipo}</p>
+                    <a href="aviso.html?id=${p.id}" style="background: #1a56db; color: white; padding: 10px; border-radius: 8px; text-decoration: none; display: block; text-align: center; font-weight: bold;">Ver Perfil Completo</a>
+                </div>
+            `).join("");
+        })
+        .catch(() => {
+            document.getElementById("contenedor-profes").innerHTML = "Error al cargar la lista.";
+        });
+
+        // Lógica de Modales
         const modal = document.getElementById('legalModal');
-        const termsLink = document.getElementById('termsLink');
-        const btnContinuar = document.getElementById('btnContinuar');
         const check = document.getElementById('acceptCheck');
+        const btn = document.getElementById('btnContinuar');
+        const termsLink = document.getElementById('termsLink');
 
         function abrirModal(tipo) {
-            // Reseteamos el checkbox y el botón cada vez que se abre
             check.checked = false;
-            btnContinuar.classList.remove('active');
-            
-            // Configuramos los links según quién hizo clic
+            btn.classList.remove('active');
             if (tipo === 'alumno') {
-                termsLink.href = "terminos-alumnos.html"; // Link al archivo de términos
-                btnContinuar.href = linkAlumno;           // Destino final: Formulario Alumno
+                termsLink.href = "terminos-alumnos.html";
+                btn.href = "https://forms.gle/q6p2hujs4EWN7Qew6";
             } else {
-                termsLink.href = "terminos-docentes.html"; // Link al archivo de términos
-                btnContinuar.href = linkDocente;           // Destino final: Formulario Docente
+                termsLink.href = "terminos-docentes.html";
+                btn.href = "https://forms.gle/JqQvMDWGmhAWMKR36";
             }
-
-            // Mostramos el modal
             modal.style.display = 'flex';
         }
 
-        function cerrarModal() {
-            modal.style.display = 'none';
-        }
+        function cerrarModal() { modal.style.display = 'none'; }
 
-        // Lógica del Checkbox: Si toca, se activa el botón
         check.addEventListener('change', function() {
-            if (this.checked) {
-                btnContinuar.classList.add('active'); // Se pone azul y clickeable
-            } else {
-                btnContinuar.classList.remove('active'); // Se pone gris y bloqueado
-            }
+            if (this.checked) btn.classList.add('active');
+            else btn.classList.remove('active');
         });
-
-        // Cerrar si hace clic fuera del cuadrito blanco
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                cerrarModal();
-            }
+    </script>
+</body>
+</html>
         }
     </script>
 </body>
