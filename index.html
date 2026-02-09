@@ -238,6 +238,37 @@
             <img src="clase-online.jpg" alt="Clases Online">
         </div>
     </section>
+    <section id="profesores-listado" style="padding: 4rem 5%; background: #f0f2f5; text-align: center;">
+    <h2 style="color: #1a56db; font-size: 2.5rem; margin-bottom: 30px;">Profesores Disponibles</h2>
+    <div id="contenedor-profes" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto;">
+        <p>Cargando lista de profesores...</p>
+    </div>
+</section>
+
+<script>
+    const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
+
+    fetch(URL_SHEET)
+    .then(r => r.json())
+    .then(data => {
+        const div = document.getElementById("contenedor-profes");
+        if (!data || data.length === 0) {
+            div.innerHTML = "<p>Próximamente más profesores disponibles.</p>";
+            return;
+        }
+        div.innerHTML = data.map(p => `
+            <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid ${p.ranking >= 1000 ? '#ffc107' : '#1a56db'}; text-align: left;">
+                <h3 style="margin: 0; color: #1a56db;">${p.nombre} ${p.apellido}</h3>
+                <p style="font-weight: bold; margin: 8px 0; color: #333;">${p.titulo}</p>
+                <p style="font-size: 0.85em; color: #666; margin-bottom: 15px;">📍 ${p.ciudad} | 💻 ${p.tipo}</p>
+                <a href="aviso.html?id=${p.id}" style="background: #1a56db; color: white; padding: 10px; border-radius: 8px; text-decoration: none; display: block; text-align: center; font-weight: bold; font-size: 0.9em;">Ver Perfil Completo</a>
+            </div>
+        `).join("");
+    })
+    .catch(err => {
+        document.getElementById("contenedor-profes").innerHTML = "Estamos actualizando la lista de profesores.";
+    });
+</script>
 
     <section class="how-it-works" id="como-funciona">
         <h2>Cómo Funciona</h2>
