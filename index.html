@@ -16,7 +16,7 @@
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; transition: transform 0.2s; }
         .card:hover { transform: translateY(-5px); }
         .btn-perfil { background: var(--primary-blue); color: white; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
-        .stars { color: #ffc107; font-size: 1.2rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .stars { color: #ffc107; font-size: 1.1rem; margin-bottom: 10px; letter-spacing: 2px; font-weight: bold; }
         .materia-tag { font-weight: bold; color: var(--primary-blue); margin: 5px 0; font-size: 1.1rem; }
         .ciudad-tag { font-size: 0.9em; color: #666; margin-bottom: 15px; }
     </style>
@@ -71,15 +71,31 @@
                 div.innerHTML = "<p>No se encontraron resultados para tu búsqueda.</p>";
                 return;
             }
-            div.innerHTML = lista.map(p => `
+
+            div.innerHTML = lista.map(p => {
+                // LÓGICA DE ESTRELLAS VERIFICADA
+                // Convertimos p.tipo (que es tu rating de la columna T) a número
+                const rating = parseFloat(p.tipo) || 0; 
+                let displayEstrellas = "";
+                
+                if (rating === 0) {
+                    displayEstrellas = `<span style="color: #999; font-size: 0.8rem;">Sin calificaciones</span>`;
+                } else {
+                    // Redondeamos para dibujar estrellas enteras
+                    const numEstrellas = Math.round(rating);
+                    displayEstrellas = "⭐".repeat(numEstrellas);
+                }
+
+                return `
                 <div class="card">
-                    <div class="stars">${p.tipo || "⭐⭐⭐⭐⭐"}</div>
+                    <div class="stars">${displayEstrellas}</div>
                     <h3 style="margin: 0;">${p.nombre} ${p.apellido}</h3>
                     <p class="materia-tag">${p.titulo}</p>
                     <p class="ciudad-tag">📍 ${p.ciudad}</p>
                     <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil Completo</a>
                 </div>
-            `).join("");
+                `;
+            }).join("");
         }
 
         function filtrar() {
