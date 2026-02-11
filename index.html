@@ -11,98 +11,114 @@
             --white: #ffffff; 
             --light-bg: #f3f4f6; 
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; color: var(--dark-text); background-color: var(--light-bg); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: var(--dark-text); background-color: var(--light-bg); }
         
-        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
 
-        /* HERO - Recuperado de tus JPG */
+        /* HERO - Basado en tu foto JPG con la imagen de estudiantes */
         .hero { 
             background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%); 
             color: var(--white); 
-            padding: 4rem 5%; 
+            padding: 5rem 5%; 
             display: flex; 
-            flex-wrap: wrap; 
             align-items: center; 
-            gap: 3rem; 
+            flex-wrap: wrap; 
+            gap: 2rem; 
         }
-        .hero-text { flex: 1; min-width: 300px; }
-        .hero-text h1 { font-size: 2.8rem; margin-bottom: 1rem; line-height: 1.2; }
+        .hero-text { flex: 1; min-width: 320px; }
+        .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; color: #fff; }
+        .hero-text p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem; }
         
-        /* La imagen que mencionabas de las JPG */
-        .hero-image-container { flex: 1; min-width: 300px; text-align: center; }
-        .hero-image-container img { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .hero-image-container { flex: 1; min-width: 320px; text-align: center; }
+        .hero-image-container img { 
+            width: 100%; 
+            max-width: 550px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+        }
 
-        .btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; display: inline-block; cursor: pointer; border: 2px solid transparent; text-decoration: none; transition: 0.3s; }
+        .btn { padding: 14px 32px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; transition: 0.3s; text-decoration: none; border: 2px solid transparent; }
         .btn-primary { background-color: var(--white); color: var(--primary-blue); margin-right: 10px; }
         .btn-outline { background-color: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-blue { background-color: var(--primary-blue); color: var(--white); }
 
-        .search-container { max-width: 600px; margin: -25px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
-        #buscador { width: 100%; padding: 15px 25px; border-radius: 50px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-size: 1.1rem; outline: none; }
+        /* BUSCADOR */
+        .search-container { max-width: 800px; margin: -35px auto 50px; padding: 0 5%; position: relative; z-index: 10; }
+        #buscador { width: 100%; padding: 22px 35px; border-radius: 60px; border: none; box-shadow: 0 15px 35px rgba(0,0,0,0.15); font-size: 1.2rem; outline: none; }
 
-        .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto 40px; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; }
-        .stars { color: #ffc107; font-size: 1.2rem; margin-bottom: 10px; }
-        .btn-perfil { background: var(--primary-blue); color: white; padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
+        /* GRILLA DE PROFESORES */
+        .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 60px; padding: 0 5%; }
+        .card { background: white; padding: 35px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 10px solid var(--primary-blue); display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .stars { color: #ffc107; font-size: 1.4rem; margin-bottom: 15px; }
+        .materia-tag { font-weight: 800; color: var(--primary-blue); font-size: 1.3rem; margin: 10px 0; }
+        .btn-perfil { background: var(--primary-blue); color: white; padding: 14px; border-radius: 15px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
 
-        /* SECCIÓN PROFESORES - La que faltaba en el PDF */
-        .profe-banner { background: #e0e7ff; padding: 3.5rem 5%; text-align: center; margin: 2rem 5%; border-radius: 20px; border: 2px dashed var(--primary-blue); }
+        /* SECCIÓN DOCENTES (Aviso Gratis) - Como en tu JPG */
+        .profe-banner { 
+            background: #eff6ff; 
+            padding: 4rem 5%; 
+            text-align: center; 
+            margin: 4rem 5%; 
+            border-radius: 40px; 
+            border: 3px dashed var(--primary-blue); 
+        }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; }
-        #btnContinuar { background-color: #ccc; pointer-events: none; width: 100%; display: block; margin-top: 15px; color: white; }
+        /* MODAL LEGAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 2.5rem; border-radius: 30px; max-width: 500px; width: 90%; text-align: center; }
+        #btnContinuar { background-color: #d1d5db; pointer-events: none; width: 100%; display: block; margin-top: 25px; }
         #btnContinuar.active { background-color: var(--primary-blue); pointer-events: auto; }
 
-        footer { background: #111827; color: #d1d5db; padding: 3rem 5%; text-align: center; }
+        footer { background: #111827; color: white; padding: 4rem 5%; text-align: center; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">🎓 Profesores Ya</div>
-    </header>
+    <header><a href="#" class="logo">🎓 Profesores Ya</a></header>
 
     <section class="hero">
         <div class="hero-text">
             <h1>Encontrá tu profe ideal: Presencial y Online</h1>
-            <p>Conectamos estudiantes con docentes apasionados. Sin intermediarios.</p>
-            <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
-            <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
+            <p>Conectamos alumnos con los mejores docentes. Clases particulares sin comisiones ni intermediarios.</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
+                <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
+            </div>
         </div>
         <div class="hero-image-container">
-            <img src="hero-image.jpg.jpg" alt="Estudiantes">
+            <img src="hero-image.jpg.jpg" alt="Imagen Estudiantes">
         </div>
     </section>
 
     <div class="search-container">
-        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Buscá por materia, ciudad o nombre...">
+        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 ¿Qué materia o ciudad estás buscando?">
     </div>
 
-    <div id="contenedor-profes" class="grid-profes">
-        </div>
+    <section id="contenedor-profes" class="grid-profes">
+        </section>
 
     <section class="profe-banner">
-        <h2 style="color: var(--primary-blue);">¿Sos profesor? Publicá tu aviso gratis</h2>
-        <p style="font-size: 1.1rem;">Sumate a la plataforma y conectá con alumnos de todo el país.</p>
-        <button onclick="abrirModal('docente')" class="btn btn-perfil" style="display:inline-block; padding: 12px 40px; border-radius: 50px; margin-top: 10px;">Publicar ahora</button>
+        <h2 style="color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 1rem;">¿Sos Profesor?</h2>
+        <p style="font-size: 1.25rem; margin-bottom: 2rem;">Publicá tu aviso hoy mismo y empezá a recibir alumnos. ¡Es gratis!</p>
+        <button onclick="abrirModal('docente')" class="btn btn-blue">Publicar mi aviso gratis</button>
     </section>
 
     <div id="legalModal" class="modal-overlay">
         <div class="modal-content">
-            <h3>Antes de continuar</h3>
-            <p>Aceptá los términos para acceder al formulario seguro.</p>
-            <div style="margin: 1.5rem 0;">
-                <input type="checkbox" id="acceptCheck">
-                <label for="acceptCheck">He leído y acepto los <a id="termsLink" href="#" target="_blank">Términos y Condiciones</a></label>
+            <h3 style="font-size: 1.8rem; color: var(--primary-blue);">Acceso Seguro</h3>
+            <p>Aceptá los términos para continuar al formulario.</p>
+            <div style="margin: 25px 0;">
+                <input type="checkbox" id="acceptCheck" style="transform: scale(1.5);">
+                <label for="acceptCheck" style="margin-left: 10px;">Acepto los <a id="termsLink" href="#" target="_blank">términos y condiciones</a></label>
             </div>
-            <a id="btnContinuar" class="btn" href="#">Continuar</a>
-            <span style="cursor:pointer; display:block; margin-top: 10px; color: #666;" onclick="cerrarModal()">Cancelar</span>
+            <a id="btnContinuar" class="btn btn-blue" href="#">Continuar</a>
+            <p onclick="cerrarModal()" style="margin-top: 20px; cursor: pointer; text-decoration: underline;">Volver</p>
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 Profesores Ya - Todos los derechos reservados.</p>
-    </footer>
+    <footer><p>© 2026 Profesores Ya - Conectando el futuro.</p></footer>
 
     <script>
         const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
@@ -116,36 +132,33 @@
         function renderProfes(lista) {
             const div = document.getElementById("contenedor-profes");
             div.innerHTML = lista.map(p => {
-                // ARREGLO DE ESTRELLAS: Si es 0 no muestra nada o dice "Sin calificaciones"
-                const num = parseFloat(p.tipo) || 0;
-                let stars = num > 0 ? "⭐".repeat(Math.round(num)) : '<span style="color:#999; font-size:0.8rem;">Sin calificaciones</span>';
-                
+                const val = parseFloat(p.tipo) || 0;
+                let estrellasHtml = val > 0 ? "⭐".repeat(Math.round(val)) : '<span style="color:#94a3b8; font-size:0.9rem;">Sin calificaciones</span>';
+
                 return `
                 <div class="card">
-                    <div class="stars">${stars}</div>
-                    <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
-                    <p style="font-weight: bold; color: var(--primary-blue); margin: 5px 0;">${p.titulo}</p>
-                    <p style="color:#666; font-size:0.9em;">📍 ${p.ciudad}</p>
-                    <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil Completo</a>
+                    <div class="stars">${estrellasHtml}</div>
+                    <h3 style="margin: 0; font-size: 1.5rem;">${p.nombre} ${p.apellido}</h3>
+                    <p class="materia-tag">${p.titulo}</p>
+                    <p style="color:#666;">📍 ${p.ciudad}</p>
+                    <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil</a>
                 </div>`;
             }).join("");
         }
 
         function filtrar() {
             const t = document.getElementById("buscador").value.toLowerCase();
-            renderProfes(profesoresData.filter(p => 
-                (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)
-            ));
+            renderProfes(profesoresData.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
         }
 
         const modal = document.getElementById('legalModal');
-        const check = document.getElementById('acceptCheck');
         const btn = document.getElementById('btnContinuar');
+        const check = document.getElementById('acceptCheck');
         const termsLink = document.getElementById('termsLink');
 
         function abrirModal(tipo) {
             modal.style.display = 'flex';
-            if(tipo === 'alumno') {
+            if (tipo === 'alumno') {
                 termsLink.href = "terminos-alumnos.html";
                 btn.href = "https://forms.gle/q6p2hujs4EWN7Qew6";
             } else {
@@ -154,8 +167,8 @@
             }
         }
         function cerrarModal() { modal.style.display = 'none'; }
-        check.addEventListener('change', function() {
-            if(this.checked) btn.classList.add('active');
+        check.addEventListener('change', () => {
+            if (check.checked) btn.classList.add('active');
             else btn.classList.remove('active');
         });
     </script>
