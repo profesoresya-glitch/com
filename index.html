@@ -8,48 +8,55 @@
         :root { --primary-blue: #1a56db; --dark-text: #1f2937; --white: #ffffff; --light-bg: #f3f4f6; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; color: var(--dark-text); background-color: var(--light-bg); }
         
-        /* --- ESTILOS DE TU DISEÑO ORIGINAL --- */
+        /* HEADER */
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); }
         nav ul { list-style: none; display: flex; gap: 20px; padding: 0; }
         nav a { color: var(--dark-text); font-weight: 500; }
 
+        /* HERO */
         .hero { background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%); color: var(--white); padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; }
         .hero-text { flex: 1; min-width: 300px; }
         .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
+        .hero-text p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; }
         .hero-image-container { flex: 1; min-width: 300px; text-align: center; }
-        .hero-image-container img { width: 100%; max-width: 600px; height: auto; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .hero-image-container img { width: 100%; max-width: 600px; height: auto; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); object-fit: contain; }
 
-        .btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; border: 2px solid transparent; }
+        /* BOTONES */
+        .btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; transition: 0.3s; border: 2px solid transparent; text-align: center; }
         .btn-primary { background-color: var(--white); color: var(--primary-blue); }
         .btn-outline { background-color: transparent; color: var(--white); border: 2px solid var(--white); }
         .btn-blue { background-color: var(--primary-blue); color: var(--white); }
+        .btn:hover { transform: translateY(-2px); }
 
-        .online-section { padding: 4rem 5%; background: var(--white); display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; flex-direction: row-reverse; }
-        .online-img img { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-        .how-it-works { background-color: #f8fafc; padding: 4rem 5%; text-align: center; }
-        .steps-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
-        .step-card { background: var(--white); padding: 2rem; border-radius: 16px; width: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .step-number { background: var(--primary-blue); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin: 0 auto 1rem auto; }
-
-        /* --- ESTILOS DEL LISTADO DE PROFESORES --- */
+        /* BUSCADOR Y GRID */
         .search-container { max-width: 600px; margin: -25px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
         #buscador { width: 100%; padding: 15px 25px; border-radius: 50px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-size: 1.1rem; outline: none; }
         .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto 40px; padding: 0 5%; }
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; transition: transform 0.2s; }
         .card:hover { transform: translateY(-5px); }
-        .stars { color: #ffc107; font-size: 1.2rem; margin-bottom: 10px; }
-        .materia-tag { font-weight: bold; color: var(--primary-blue); margin: 5px 0; }
+        .stars { color: #ffc107; font-size: 1.2rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .materia-tag { font-weight: bold; color: var(--primary-blue); margin: 5px 0; font-size: 1.1rem; }
+        .ciudad-tag { font-size: 0.9em; color: #666; margin-bottom: 15px; }
+        .btn-perfil { background: var(--primary-blue); color: white; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; margin-top: auto; }
 
-        /* --- ESTILOS DEL MODAL --- */
+        /* ONLINE SECTION */
+        .online-section { padding: 4rem 5%; background: var(--white); display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; flex-direction: row-reverse; }
+        .online-img img { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* HOW IT WORKS */
+        .how-it-works { background-color: #f8fafc; padding: 4rem 5%; text-align: center; }
+        .steps-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
+        .step-card { background: var(--white); padding: 2rem; border-radius: 16px; width: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .step-number { background: var(--primary-blue); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin: 0 auto 1rem auto; }
+
+        /* MODAL */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; }
-        #btnContinuar { background-color: #ccc; pointer-events: none; width: 100%; }
+        #btnContinuar { background-color: #ccc; pointer-events: none; width: 100%; margin-top: 15px; }
         #btnContinuar.active { background-color: var(--primary-blue); pointer-events: auto; }
 
-        footer { background: #111827; color: #9ca3af; padding: 4rem 5%; }
-        footer a { color: #9ca3af; }
+        footer { background: #111827; color: #9ca3af; padding: 4rem 5%; text-align: center; }
     </style>
 </head>
 <body>
@@ -57,13 +64,13 @@
     <div id="legalModal" class="modal-overlay">
         <div class="modal-content">
             <h3>Antes de continuar</h3>
-            <p>Acepta los términos para acceder al formulario seguro.</p>
-            <div style="margin: 1.5rem 0;">
+            <p>Para acceder al servicio, lee y acepta los términos.</p>
+            <div style="margin: 1.5rem 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <input type="checkbox" id="acceptCheck">
-                <label for="acceptCheck"> He leído y acepto los <a id="termsLink" href="#" target="_blank">Términos</a></label>
+                <label for="acceptCheck">He leído y acepto los <a id="termsLink" href="#" target="_blank" style="color: var(--primary-blue);">Términos</a></label>
             </div>
             <a id="btnContinuar" class="btn btn-blue" href="#">Continuar</a>
-            <p onclick="cerrarModal()" style="cursor:pointer; margin-top:10px; font-size:0.8rem;">Cancelar</p>
+            <span style="display: block; margin-top: 15px; cursor: pointer; text-decoration: underline;" onclick="cerrarModal()">Cancelar</span>
         </div>
     </div>
 
@@ -75,9 +82,11 @@
     <section class="hero">
         <div class="hero-text">
             <h1>Encontrá tu profe ideal: Presencial y Online</h1>
-            <p>Conectamos estudiantes con docentes apasionados. Sin intermediarios.</p>
-            <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
-            <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
+            <p>Conectamos estudiantes con docentes apasionados. Clases particulares sin intermediarios.</p>
+            <div>
+                <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
+                <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
+            </div>
         </div>
         <div class="hero-image-container"><img src="estudiantes.jpg" alt="Estudiantes"></div>
     </section>
@@ -88,14 +97,14 @@
 
     <section id="profesores-listado">
         <div id="contenedor-profes" class="grid-profes">
-            <p style="text-align:center; grid-column: 1/-1;">Cargando profesores...</p>
+            <p style="text-align: center; grid-column: 1/-1;">Cargando profesores...</p>
         </div>
     </section>
 
     <section class="online-section">
         <div class="hero-text">
             <h2 style="color: var(--primary-blue); font-size: 2.5rem;">También Modalidad Online</h2>
-            <p>¿Prefieres estudiar desde casa? Conecta por videollamada.</p>
+            <p>¿Prefieres estudiar desde casa? Conecta por videollamada y ahorra tiempo.</p>
             <button onclick="abrirModal('alumno')" class="btn btn-blue">Buscar Profe Online</button>
         </div>
         <div class="online-img"><img src="clase-online.jpg" alt="Clases Online"></div>
@@ -104,33 +113,68 @@
     <section class="how-it-works">
         <h2>Cómo funciona</h2>
         <div class="steps-container">
-            <div class="step-card"><div class="step-number">1</div><h3>Regístrate</h3><p>Acepta términos y completa el formulario.</p></div>
-            <div class="step-card"><div class="step-number">2</div><h3>Elegí</h3><p>Revisamos tu pedido y te contactamos.</p></div>
+            <div class="step-card"><div class="step-number">1</div><h3>Regístrate</h3><p>Completa el formulario seguro.</p></div>
+            <div class="step-card"><div class="step-number">2</div><h3>Conecta</h3><p>Te enviamos el contacto directo.</p></div>
+            <div class="step-card"><div class="step-number">3</div><h3>Aprende</h3><p>Coordina tu primera clase.</p></div>
         </div>
     </section>
 
     <footer id="contacto">
         <div class="logo" style="color: white; margin-bottom: 1rem;">🎓 ProfesoresYa</div>
-        <p>© 2026 ProfesoresYa - Todos los derechos reservados.</p>
+        <p>© 2026 ProfesoresYa - Tu éxito académico empieza acá.</p>
     </footer>
 
     <script>
         const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         let profesoresData = [];
 
-        // LÓGICA DE DATOS
+        const normalizar = (t) => t.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
         fetch(URL_SHEET)
-        .then(r => r.json())
-        .then(data => { profesoresData = data; renderProfes(data); });
+            .then(r => r.json())
+            .then(data => { profesoresData = data; renderProfes(data); })
+            .catch(e => document.getElementById("contenedor-profes").innerHTML = "Error al cargar datos.");
 
         function renderProfes(lista) {
             const div = document.getElementById("contenedor-profes");
+            if (lista.length === 0) { div.innerHTML = "<p>Sin resultados.</p>"; return; }
+            
             div.innerHTML = lista.map(p => {
-                const rating = parseFloat(p.tipo) || 0;
-                let estrellas = rating > 0 ? "⭐".repeat(Math.round(rating)) : "Sin calificaciones";
+                // ARREGLO DE ESTRELLAS
+                const r = parseFloat(p.tipo) || 0;
+                const estrellas = r > 0 ? "⭐".repeat(Math.round(r)) : "Sin calificaciones";
+                
                 return `
                 <div class="card">
                     <div class="stars">${estrellas}</div>
-                    <h3>${p.nombre} ${p.apellido}</h3>
+                    <h3 style="margin: 0;">${p.nombre} ${p.apellido}</h3>
                     <p class="materia-tag">${p.titulo}</p>
-                    <p>📍 ${
+                    <p class="ciudad-tag">📍 ${p.ciudad}</p>
+                    <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil</a>
+                </div>`;
+            }).join("");
+        }
+
+        function filtrar() {
+            const t = normalizar(document.getElementById("buscador").value);
+            const f = profesoresData.filter(p => normalizar(p.nombre + p.apellido + p.titulo + p.ciudad).includes(t));
+            renderProfes(f);
+        }
+
+        // MODAL LOGIC
+        const modal = document.getElementById('legalModal');
+        const btnC = document.getElementById('btnContinuar');
+        const check = document.getElementById('acceptCheck');
+
+        function abrirModal(tipo) {
+            modal.style.display = 'flex';
+            btnC.href = tipo === 'alumno' ? "https://forms.gle/q6p2hujs4EWN7Qew6" : "https://forms.gle/JqQvMDWGmhAWMKR36";
+        }
+        function cerrarModal() { modal.style.display = 'none'; }
+        check.addEventListener('change', () => {
+            if (check.checked) btnC.classList.add('active');
+            else btnC.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
