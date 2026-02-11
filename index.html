@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesores Ya Clases Online y Presenciales</title>
+    <title>Profesores Ya - Clases Online y Presenciales</title>
     <style>
         :root { 
             --primary-blue: #1a56db; 
             --dark-text: #1f2937; 
             --white: #ffffff; 
             --light-bg: #f3f4f6; 
-            --gold: #ffc107; 
         }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; color: var(--dark-text); background-color: var(--light-bg); }
         
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); }
 
-        /* HERO ORIGINAL RECUPERADO */
-        .hero { background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%); color: var(--white); padding: 4rem 5%; display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; }
+        /* HERO - Recuperado de tus JPG */
+        .hero { 
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%); 
+            color: var(--white); 
+            padding: 4rem 5%; 
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: center; 
+            gap: 3rem; 
+        }
         .hero-text { flex: 1; min-width: 300px; }
-        .hero-text h1 { font-size: 2.8rem; margin-bottom: 1rem; }
+        .hero-text h1 { font-size: 2.8rem; margin-bottom: 1rem; line-height: 1.2; }
         
-        /* IMAGEN DEL SITIO RECUPERADA */
+        /* La imagen que mencionabas de las JPG */
         .hero-image-container { flex: 1; min-width: 300px; text-align: center; }
         .hero-image-container img { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
 
@@ -35,13 +42,12 @@
 
         .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto 40px; padding: 0 5%; }
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; }
-        .stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 10px; }
+        .stars { color: #ffc107; font-size: 1.2rem; margin-bottom: 10px; }
         .btn-perfil { background: var(--primary-blue); color: white; padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
 
-        /* SECCIÓN DE DOCENTES RECUPERADA */
-        .profe-banner { background: #e0e7ff; padding: 3rem 5%; text-align: center; margin: 2rem 5%; border-radius: 20px; border: 2px dashed var(--primary-blue); }
+        /* SECCIÓN PROFESORES - La que faltaba en el PDF */
+        .profe-banner { background: #e0e7ff; padding: 3.5rem 5%; text-align: center; margin: 2rem 5%; border-radius: 20px; border: 2px dashed var(--primary-blue); }
 
-        /* MODAL LEGAL */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; }
         #btnContinuar { background-color: #ccc; pointer-events: none; width: 100%; display: block; margin-top: 15px; color: white; }
@@ -52,7 +58,9 @@
 </head>
 <body>
 
-    <header><div class="logo"> Profesores Ya</div></header>
+    <header>
+        <div class="logo">🎓 Profesores Ya</div>
+    </header>
 
     <section class="hero">
         <div class="hero-text">
@@ -62,27 +70,27 @@
             <button onclick="abrirModal('docente')" class="btn btn-outline">Soy Docente</button>
         </div>
         <div class="hero-image-container">
-            <img src="hero-image.jpg.jpg" alt="Docente dando clase">
+            <img src="hero-image.jpg.jpg" alt="Estudiantes">
         </div>
     </section>
 
     <div class="search-container">
-        <input type="text" id="buscador" onkeyup="filtrar()" placeholder=" Ej: Matemática, Inglés, Buenos Aires...">
+        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Buscá por materia, ciudad o nombre...">
     </div>
 
-    <section class="grid-profes" id="contenedor-profes">
-        </section>
+    <div id="contenedor-profes" class="grid-profes">
+        </div>
 
     <section class="profe-banner">
-        <h2>¿Sos profesor? Publicá tu aviso gratis</h2>
-        <p>Unite a nuestra comunidad y encontrá nuevos alumnos hoy mismo.</p>
-        <button onclick="abrirModal('docente')" class="btn btn-blue" style="background: var(--primary-blue); color: white; border-radius: 50px;">Publicar ahora</button>
+        <h2 style="color: var(--primary-blue);">¿Sos profesor? Publicá tu aviso gratis</h2>
+        <p style="font-size: 1.1rem;">Sumate a la plataforma y conectá con alumnos de todo el país.</p>
+        <button onclick="abrirModal('docente')" class="btn btn-perfil" style="display:inline-block; padding: 12px 40px; border-radius: 50px; margin-top: 10px;">Publicar ahora</button>
     </section>
 
     <div id="legalModal" class="modal-overlay">
         <div class="modal-content">
             <h3>Antes de continuar</h3>
-            <p>Para acceder al servicio, aceptá nuestros términos legales.</p>
+            <p>Aceptá los términos para acceder al formulario seguro.</p>
             <div style="margin: 1.5rem 0;">
                 <input type="checkbox" id="acceptCheck">
                 <label for="acceptCheck">He leído y acepto los <a id="termsLink" href="#" target="_blank">Términos y Condiciones</a></label>
@@ -92,7 +100,9 @@
         </div>
     </div>
 
-    <footer><p>© 2026 ProfesoresYa Todos los derechos reservados.</p></footer>
+    <footer>
+        <p>© 2026 Profesores Ya - Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
@@ -104,3 +114,50 @@
         });
 
         function renderProfes(lista) {
+            const div = document.getElementById("contenedor-profes");
+            div.innerHTML = lista.map(p => {
+                // ARREGLO DE ESTRELLAS: Si es 0 no muestra nada o dice "Sin calificaciones"
+                const num = parseFloat(p.tipo) || 0;
+                let stars = num > 0 ? "⭐".repeat(Math.round(num)) : '<span style="color:#999; font-size:0.8rem;">Sin calificaciones</span>';
+                
+                return `
+                <div class="card">
+                    <div class="stars">${stars}</div>
+                    <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
+                    <p style="font-weight: bold; color: var(--primary-blue); margin: 5px 0;">${p.titulo}</p>
+                    <p style="color:#666; font-size:0.9em;">📍 ${p.ciudad}</p>
+                    <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil Completo</a>
+                </div>`;
+            }).join("");
+        }
+
+        function filtrar() {
+            const t = document.getElementById("buscador").value.toLowerCase();
+            renderProfes(profesoresData.filter(p => 
+                (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)
+            ));
+        }
+
+        const modal = document.getElementById('legalModal');
+        const check = document.getElementById('acceptCheck');
+        const btn = document.getElementById('btnContinuar');
+        const termsLink = document.getElementById('termsLink');
+
+        function abrirModal(tipo) {
+            modal.style.display = 'flex';
+            if(tipo === 'alumno') {
+                termsLink.href = "terminos-alumnos.html";
+                btn.href = "https://forms.gle/q6p2hujs4EWN7Qew6";
+            } else {
+                termsLink.href = "terminos-docentes.html";
+                btn.href = "https://forms.gle/JqQvMDWGmhAWMKR36";
+            }
+        }
+        function cerrarModal() { modal.style.display = 'none'; }
+        check.addEventListener('change', function() {
+            if(this.checked) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
