@@ -6,115 +6,105 @@
     <title>Profesores Ya - Clases Online y Presenciales</title>
     <style>
         :root { --primary: #1a56db; --text: #1f2937; --bg: #f3f4f6; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
         
-        header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
 
         /* HERO - ESTUDIANTE CON AURICULARES */
         .hero { 
             background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%); 
-            color: white; 
-            padding: 5rem 5%; 
-            display: flex; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 2rem; 
+            color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; 
         }
-        .hero-text { flex: 1; min-width: 320px; }
-        .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero-img { flex: 1; min-width: 320px; text-align: center; }
-        .hero-img img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-text h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero-img { flex: 1; min-width: 300px; text-align: center; }
+        .hero-img img { width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
 
-        .btn { padding: 14px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; }
-        .btn-white { background: white; color: var(--primary); margin-right: 15px; }
+        .btn { padding: 12px 28px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; border: 2px solid transparent; }
+        .btn-white { background: white; color: var(--primary); margin-right: 12px; }
         .btn-outline { border: 2px solid white; color: white; }
 
-        /* EXPLICACIÓN ESTRELLITAS */
-        .info-estrellas { 
-            background: white; 
-            padding: 2rem 5%; 
-            text-align: center; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 15px;
-        }
-        .info-estrellas img { max-width: 250px; } /* Aquí va la imagen de las estrellitas */
-        .info-estrellas p { max-width: 600px; font-size: 1.1rem; color: #4b5563; }
+        /* SECCIÓN EXPLICACIÓN ESTRELLITAS */
+        .explicacion-estrellas { background: white; padding: 3rem 5%; text-align: center; }
+        .explicacion-estrellas img { max-width: 200px; margin-bottom: 1rem; }
+        .explicacion-estrellas p { max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #4b5563; }
 
-        /* BUSCADOR Y GRILLA */
-        .search-area { max-width: 800px; margin: -30px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
-        #buscador { width: 100%; padding: 20px 30px; border-radius: 60px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.15); font-size: 1.2rem; outline: none; }
+        /* BUSCADOR */
+        .search-area { max-width: 700px; margin: -30px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
+        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 60px; padding: 0 5%; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 8px solid var(--primary); }
-        .stars-display { color: #ffc107; font-size: 1.4rem; margin-bottom: 10px; }
-        .btn-perfil { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; display: block; margin-top: 20px; font-weight: bold; }
+        /* TARJETAS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px; padding: 0 5%; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 8px solid var(--primary); }
+        .stars-ranking { color: #ffc107; font-size: 1.3rem; margin-bottom: 8px; }
+        .materia { font-weight: 700; color: var(--primary); font-size: 1.2rem; margin: 8px 0; }
+        .btn-perfil { background: var(--primary); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; margin-top: 15px; font-weight: bold; text-decoration: none; }
 
         /* BANNER DOCENTE DANDO CLASE */
-        .banner-profe { 
-            background: #eff6ff; 
-            padding: 4rem 5%; 
-            display: flex; 
-            align-items: center; 
-            flex-wrap: wrap-reverse; 
-            gap: 3rem; 
-            margin: 4rem 5%; 
-            border-radius: 30px; 
-            border: 3px dashed var(--primary); 
+        .banner-docente { 
+            background: #eef2ff; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap-reverse; 
+            gap: 3rem; margin: 3rem 5%; border-radius: 25px; border: 3px dashed var(--primary); 
         }
-        .banner-profe img { width: 100%; max-width: 450px; border-radius: 20px; }
+        .banner-docente img { width: 100%; max-width: 400px; border-radius: 15px; }
+        .banner-docente-text { flex: 1; }
 
         footer { background: #111827; color: white; padding: 3rem 5%; text-align: center; }
     </style>
 </head>
 <body>
 
-    <header><a href="#" class="logo">🎓 Profesores Ya</a></header>
+    <header>
+        <a href="#" class="logo">🎓 Profesores Ya</a>
+    </header>
 
     <section class="hero">
         <div class="hero-text">
             <h1>Encontrá tu profe ideal: Presencial y Online</h1>
-            <p>La plataforma donde los alumnos eligen a los mejores docentes.</p>
+            <p>Conectamos alumnos con los mejores docentes particulares. Sin comisiones.</p>
             <button onclick="abrirM('alumno')" class="btn btn-white">Soy Estudiante</button>
             <button onclick="abrirM('docente')" class="btn btn-outline">Soy Docente</button>
         </div>
         <div class="hero-img">
-            <img src="estudiante-auriculares.jpg" alt="Estudiante con auriculares">
+            <img src="estudiante-auriculares.jpg" alt="Estudiante estudiando">
         </div>
     </section>
 
-    <section class="info-estrellas">
-        <img src="estrellitas.jpg" alt="Calificaciones"> 
-        <p><strong>¿Cómo funciona?</strong> Nuestros estudiantes califican a los docentes después de cada clase para asegurar la mejor calidad educativa.</p>
+    <section class="explicacion-estrellas">
+        <img src="estrellitas.jpg" alt="Sistema de estrellas">
+        <p><strong>Calidad garantizada:</strong> Los alumnos califican a los docentes según su experiencia, ayudando a la comunidad a elegir siempre lo mejor.</p>
     </section>
 
     <div class="search-area">
-        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 ¿Qué querés aprender hoy?">
+        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 ¿Qué materia o ciudad buscás?">
     </div>
 
-    <section id="contenedor-profes" class="grid">
-        </section>
-
-    <section class="banner-profe">
-        <div class="img-area">
-            <img src="docente-clase.jpg" alt="Docente dando clase">
+    <div id="contenedor-profes" class="grid">
         </div>
-        <div class="text-area">
-            <h2 style="color: var(--primary); font-size: 2.2rem;">¿Sos docente?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Publicá tu aviso hoy mismo y empezá a recibir consultas de alumnos interesados en tus clases.</p>
-            <button onclick="abrirM('docente')" class="btn" style="background: var(--primary); color: white; border-radius: 50px;">Publicar aviso gratis</button>
+
+    <section class="banner-docente">
+        <div class="banner-docente-img">
+            <img src="docente-clase.jpg" alt="Docente trabajando">
+        </div>
+        <div class="banner-docente-text">
+            <h2 style="color: var(--primary); font-size: 2.2rem; margin-top: 0;">¿Querés dar clases?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Sumate a Profesores Ya y empezá a recibir consultas de alumnos hoy mismo. ¡Es gratis!</p>
+            <button onclick="abrirM('docente')" class="btn" style="background: var(--primary); color: white; border-radius: 50px;">Publicar mi aviso</button>
         </div>
     </section>
 
-    <footer><p>© 2026 Profesores Ya - Conectando el conocimiento.</p></footer>
+    <footer>
+        <p>© 2026 Profesores Ya - Conectando conocimiento.</p>
+    </footer>
 
     <script>
-        const URL = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-        let profes = [];
+        const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
+        let profesoresData = [];
 
-        fetch(URL).then(r => r.json()).then(data => { profes = data; render(data); });
+        fetch(URL_SHEET).then(r => r.json()).then(data => {
+            profesoresData = data;
+            render(data);
+        });
 
         function render(lista) {
             const div = document.getElementById("contenedor-profes");
@@ -123,9 +113,9 @@
                 let stars = cal > 0 ? "⭐".repeat(Math.round(cal)) : '<span style="color:#999; font-size:0.8rem;">Sin calificaciones</span>';
                 return `
                 <div class="card">
-                    <div class="stars-display">${stars}</div>
+                    <div class="stars-ranking">${stars}</div>
                     <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
-                    <p style="font-weight:bold; color:var(--primary);">${p.titulo}</p>
+                    <p class="materia">${p.titulo}</p>
                     <p style="color:#666; font-size:0.9rem;">📍 ${p.ciudad}</p>
                     <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil</a>
                 </div>`;
@@ -134,7 +124,7 @@
 
         function filtrar() {
             const t = document.getElementById("buscador").value.toLowerCase();
-            render(profes.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
+            render(profesoresData.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
         }
 
         function abrirM(tipo) {
