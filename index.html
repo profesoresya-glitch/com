@@ -16,7 +16,7 @@
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; transition: transform 0.2s; }
         .card:hover { transform: translateY(-5px); }
         .btn-perfil { background: var(--primary-blue); color: white; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
-        .stars { color: #ffc107; font-size: 1.1rem; margin-bottom: 10px; letter-spacing: 2px; font-weight: bold; }
+        .stars { color: #ffc107; font-size: 1.1rem; margin-bottom: 10px; letter-spacing: 2px; font-weight: bold; min-height: 1.2rem; }
         .materia-tag { font-weight: bold; color: var(--primary-blue); margin: 5px 0; font-size: 1.1rem; }
         .ciudad-tag { font-size: 0.9em; color: #666; margin-bottom: 15px; }
     </style>
@@ -46,7 +46,6 @@
         const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         let profesoresData = [];
 
-        // Función para quitar tildes y normalizar texto
         const normalizar = (texto) => {
             return (texto || "").toString()
                 .normalize("NFD")
@@ -73,25 +72,27 @@
             }
 
             div.innerHTML = lista.map(p => {
-                // LÓGICA DE ESTRELLAS VERIFICADA
-                // Convertimos p.tipo (que es tu rating de la columna T) a número
-                const rating = parseFloat(p.tipo) || 0; 
-                let displayEstrellas = "";
+                // BUSCAMOS EL RATING EN CUALQUIER COLUMNA POSIBLE (tipo, rating, o posición 20)
+                let valorRaw = p.tipo || p.rating || p['columna 20'] || p['20'] || 0;
+                let rating = parseFloat(valorRaw);
                 
-                if (rating === 0) {
-                    displayEstrellas = `<span style="color: #999; font-size: 0.8rem;">Sin calificaciones</span>`;
+                let estrellasHtml = "";
+                
+                // Si el rating es válido y mayor a 0
+                if (!isNaN(rating) && rating > 0) {
+                    const cantidad = Math.round(rating);
+                    estrellasHtml = "⭐".repeat(Math.min(cantidad, 5));
                 } else {
-                    // Redondeamos para dibujar estrellas enteras
-                    const numEstrellas = Math.round(rating);
-                    displayEstrellas = "⭐".repeat(numEstrellas);
+                    // Texto gris sutil si no hay nada
+                    estrellasHtml = '<span style="color: #bbb; font-size: 0.8rem; letter-spacing: 0;">Sin calificaciones</span>';
                 }
 
                 return `
                 <div class="card">
-                    <div class="stars">${displayEstrellas}</div>
+                    <div class="stars">${estrellasHtml}</div>
                     <h3 style="margin: 0;">${p.nombre} ${p.apellido}</h3>
-                    <p class="materia-tag">${p.titulo}</p>
-                    <p class="ciudad-tag">📍 ${p.ciudad}</p>
+                    <p class="materia-tag">${p.titulo || 'Profesor'}</p>
+                    <p class="ciudad-tag">📍 ${p.ciudad || 'Consultar'}</p>
                     <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil Completo</a>
                 </div>
                 `;
