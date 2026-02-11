@@ -3,68 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesores Ya Clases Online y Presenciales</title>
+    <title>ProfesoresYa - Clases Online y Presenciales</title>
     <style>
-        :root { 
-            --primary-blue: #1a56db; 
-            --dark-text: #1f2937; 
-            --white: #ffffff; 
-            --light-bg: #f3f4f6; 
-            --gold: #ffc107; 
-        }
+        :root { --primary-blue: #1a56db; --dark-text: #1f2937; --white: #ffffff; --light-bg: #f3f4f6; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; color: var(--dark-text); background-color: var(--light-bg); }
-        
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-blue); }
-
         .hero { background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%); color: var(--white); padding: 3rem 5%; text-align: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        
-        .btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; display: inline-block; cursor: pointer; border: 2px solid transparent; text-decoration: none; transition: 0.3s; }
-        .btn-primary { background-color: var(--white); color: var(--primary-blue); margin: 10px; }
-        .btn-blue { background-color: var(--primary-blue); color: var(--white); }
-
         .search-container { max-width: 600px; margin: -25px auto 0; padding: 0 5%; }
         #buscador { width: 100%; padding: 15px 25px; border-radius: 50px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-size: 1.1rem; outline: none; }
-
         .grid-profes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; text-align: left; }
-        .stars { color: var(--gold); font-weight: bold; margin-bottom: 10px; font-size: 1.2rem; letter-spacing: 2px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; }
         .btn-perfil { background: var(--primary-blue); color: white; padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; margin-top: auto; }
-
-        /* MODAL */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; }
-        #btnContinuar { background-color: #ccc; cursor: not-allowed; pointer-events: none; width: 100%; display: block; margin-top: 10px; color: white; }
-        #btnContinuar.active { background-color: var(--primary-blue); cursor: pointer; pointer-events: auto; }
-        
-        footer { background: #111827; color: #d1d5db; padding: 2rem 5%; text-align: center; }
+        .stars { color: #ffc107; font-weight: bold; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="legalModal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>Antes de continuar</h3>
-            <p>Para acceder al servicio, es necesario que leas y aceptes nuestros términos legales.</p>
-            <div style="margin: 1.5rem 0;">
-                <input type="checkbox" id="acceptCheck">
-                <label for="acceptCheck">He leído y acepto los <a id="termsLink" href="#" target="_blank">Términos y Condiciones</a>.</label>
-            </div>
-            <a id="btnContinuar" class="btn" href="#">Continuar</a>
-            <span style="cursor:pointer; display:block; margin-top: 10px; color: #666;" onclick="cerrarModal()">Cancelar</span>
-        </div>
-    </div>
-
     <header>
-        <div class="logo">Profesores Ya</div>
+        <div class="logo">🎓 ProfesoresYa</div>
     </header>
 
     <section class="hero">
         <h1>Encontrá tu profe ideal</h1>
         <p>Buscá por materia o ciudad y conectá directo.</p>
-        <button onclick="abrirModal('alumno')" class="btn btn-primary">Soy Estudiante</button>
-        <button onclick="abrirModal('docente')" class="btn" style="color: white; border-color: white;">Soy Docente</button>
     </section>
 
     <div class="search-container">
@@ -76,10 +38,6 @@
             <p>Cargando profesores...</p>
         </div>
     </section>
-
-    <footer>
-        <p>© 2026 ProfesoresYa Todos los derechos reservados.</p>
-    </footer>
 
     <script>
         const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
@@ -99,20 +57,21 @@
                 return;
             }
             div.innerHTML = lista.map(p => {
-                // PARCHE DE ESTRELLAS: Si es 0 o vacío, no muestra nada
-                const rating = parseFloat(p.tipo) || 0;
+                // LÓGICA DE ESTRELLAS ARREGLADA
+                const puntaje = parseFloat(p.tipo) || 0;
                 let estrellasHtml = "";
-                if (rating > 0) {
-                    estrellasHtml = "⭐".repeat(Math.round(rating));
+                
+                if (puntaje > 0) {
+                    estrellasHtml = "⭐".repeat(Math.round(puntaje));
                 } else {
-                    estrellasHtml = '<span style="color: #ccc; font-size: 0.8rem;">Sin calificaciones</span>';
+                    estrellasHtml = '<span style="color: #999; font-size: 0.8rem; font-weight: normal;">Sin calificaciones</span>';
                 }
 
                 return `
                 <div class="card">
                     <div class="stars">${estrellasHtml}</div>
-                    <h3 style="margin: 0; color: #1a56db;">${p.nombre} ${p.apellido}</h3>
-                    <p style="font-weight: bold; margin: 8px 0; color: #333;">${p.titulo}</p>
+                    <h3 style="margin: 0;">${p.nombre} ${p.apellido}</h3>
+                    <p style="font-weight: bold; color: var(--primary-blue);">${p.titulo}</p>
                     <p style="font-size: 0.9em; color: #666;">📍 ${p.ciudad}</p>
                     <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil Completo</a>
                 </div>
@@ -120,6 +79,7 @@
             }).join("");
         }
 
+        // LÓGICA DEL BUSCADOR
         function filtrar() {
             const termino = document.getElementById("buscador").value.toLowerCase();
             const filtrados = profesoresData.filter(p => 
@@ -130,30 +90,6 @@
             );
             renderProfes(filtrados);
         }
-
-        // LÓGICA DE MODALES ORIGINAL
-        const modal = document.getElementById('legalModal');
-        const check = document.getElementById('acceptCheck');
-        const btn = document.getElementById('btnContinuar');
-        const termsLink = document.getElementById('termsLink');
-
-        function abrirModal(tipo) {
-            check.checked = false;
-            btn.classList.remove('active');
-            if (tipo === 'alumno') {
-                termsLink.href = "terminos-alumnos.html";
-                btn.href = "https://forms.gle/q6p2hujs4EWN7Qew6";
-            } else {
-                termsLink.href = "terminos-docentes.html";
-                btn.href = "https://forms.gle/JqQvMDWGmhAWMKR36";
-            }
-            modal.style.display = 'flex';
-        }
-        function cerrarModal() { modal.style.display = 'none'; }
-        check.addEventListener('change', function() {
-            if (this.checked) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
     </script>
 </body>
 </html>
