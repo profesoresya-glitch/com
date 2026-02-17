@@ -7,34 +7,55 @@
     <style>
         :root { --azul: #1a56db; --gris: #f3f4f6; --texto: #1f2937; --celeste: #eef2ff; --amarillo: #ffc107; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); color: var(--texto); scroll-behavior: smooth; }
+        
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--azul); text-decoration: none; }
-        .hero { background: linear-gradient(135deg, var(--azul) 0%, #1e40af 100%); color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; }
+
+        .hero { 
+            background: linear-gradient(135deg, var(--azul) 0%, #1e40af 100%); 
+            color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; 
+        }
         .hero-text { flex: 1; min-width: 300px; }
         .hero-text h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero-img { flex: 1; min-width: 300px; text-align: center; }
         .hero-img img { width: 100%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
         .btn { padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; border: none; }
         .btn-blanco { background: white; color: var(--azul); margin-right: 10px; }
         .btn-borde { border: 2px solid white; color: white; background: transparent; }
         .btn-azul { background: var(--azul); color: white; }
+
         .seccion-estrellas-estatica { background: white; padding: 3rem 5%; text-align: center; border-bottom: 1px solid #ddd; }
         .seccion-estrellas-estatica img { max-width: 250px; margin-bottom: 15px; }
+
         .buscador-container { max-width: 600px; margin: -25px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
         #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; box-sizing: border-box; }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px; padding: 0 5%; }
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); display: flex; flex-direction: column; align-items: center; text-align: center; }
         .estrellas-profe { color: var(--amarillo); font-size: 1.3rem; margin-bottom: 10px; }
+
         .faq { padding: 4rem 5%; max-width: 900px; margin: 0 auto; }
-        .faq h2 { text-align: center; color: var(--azul); }
-        .faq-item { background: white; margin-bottom: 10px; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .faq h2 { text-align: center; color: var(--azul); margin-bottom: 2rem; }
+        .faq-item { background: white; margin-bottom: 15px; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .faq-item h3 { margin: 0 0 10px; font-size: 1.1rem; color: var(--azul); }
+        .faq-item p { margin: 0; color: #4b5563; line-height: 1.5; }
+
         .contacto-seccion { background: var(--celeste); padding: 4rem 5%; text-align: center; }
-        .banner-docente { background: white; padding: 3rem; display: flex; align-items: center; flex-wrap: wrap-reverse; gap: 3rem; margin: 0 auto 3rem; border-radius: 25px; border: 3px dashed var(--azul); max-width: 1100px; }
+        .banner-docente { 
+            background: white; padding: 3rem; display: flex; align-items: center; flex-wrap: wrap-reverse; 
+            gap: 3rem; margin: 0 auto 3rem; border-radius: 25px; border: 3px dashed var(--azul); max-width: 1100px;
+        }
         .banner-docente img { width: 100%; max-width: 350px; border-radius: 15px; }
+
         footer { background: #111827; color: white; padding: 3rem 5%; text-align: center; }
+        .footer-links { margin-top: 1rem; }
+        .footer-links a { color: #9ca3af; text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
     <header><a href="index.html" class="logo">🎓 Profesores Ya</a></header>
+
     <section class="hero">
         <div class="hero-text">
             <h1>Encontrá tu profe ideal: Presencial y Online</h1>
@@ -44,48 +65,80 @@
         </div>
         <div class="hero-img"><img src="clase-online.jpg" alt="Hero"></div>
     </section>
+
     <section class="seccion-estrellas-estatica">
         <img src="estrellas.jpg" alt="Calificaciones">
         <p><strong>Calidad garantizada.</strong> Los alumnos puntúan a sus docentes después de cada clase.</p>
     </section>
+
     <div class="buscador-container">
         <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Materia, ciudad o nombre...">
     </div>
+
     <div id="contenedor-profes" class="grid"></div>
+
     <section class="faq">
         <h2>Preguntas Frecuentes</h2>
-        <div class="faq-item"><h3>¿Cómo contacto a un profesor?</h3><p>Entrá al perfil del docente y hacé clic en "Ver Perfil" para ver sus datos.</p></div>
+        <div class="faq-item">
+            <h3>¿Cómo contacto a un profesor?</h3>
+            <p>Es muy simple: buscá la materia que necesitás, elegí un docente y hacé clic en "Ver Perfil". Allí encontrarás sus medios de contacto directo (WhatsApp, Teléfono o Email).</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Tiene costo para el alumno?</h3>
+            <p>No. Profesores Ya es una plataforma gratuita para los alumnos. No cobramos comisión por las clases que tomes.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Las clases son online o presenciales?</h3>
+            <p>Ambas opciones están disponibles. Cada docente especifica en su perfil si da clases por videollamada, a domicilio o en su propio espacio educativo.</p>
+        </div>
     </section>
+
     <section class="contacto-seccion">
         <div class="banner-docente">
             <img src="clase-presencial.PNG" alt="Docente">
             <div style="flex: 1; text-align: left;">
                 <h2 style="color: var(--azul); margin-top: 0;">¿Dás clases particulares?</h2>
-                <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn btn-azul">Publicar mi aviso gratis</a>
+                <p>Unite a la red más grande de docentes de la región. Publicá tu aviso gratis y gestioná tus propios alumnos sin intermediarios.</p>
+                <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn btn-azul">Publicar mi aviso ahora</a>
             </div>
         </div>
+        <h3>¿Tenés más dudas?</h3>
+        <p>Escribinos y te ayudamos a encontrar el docente que mejor se adapte a tus necesidades.</p>
+        <a href="mailto:info@profesoresya.com" class="btn btn-borde" style="color: var(--azul); border-color: var(--azul);">Contactar Soporte Técnico</a>
     </section>
-    <footer><p>© 2026 Profesores Ya</p></footer>
+
+    <footer>
+        <p>© 2026 Profesores Ya - Conectando conocimiento.</p>
+        <div class="footer-links">
+            <a href="terminos-alumnos.html">Términos Alumnos</a>
+            <a href="terminos-docentes.html">Términos Docentes</a>
+            <a href="aviso.html">Aviso Legal</a>
+        </div>
+    </footer>
+
     <script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         let dataP = [];
+
         fetch(URL_S).then(r => r.json()).then(d => {
             dataP = d.sort((a, b) => (b.ranking || 0) - (a.ranking || 0));
             render(dataP);
         });
+
         function render(l) {
             document.getElementById("contenedor-profes").innerHTML = l.map(p => {
                 const cant = parseFloat(p.tipo) || 0;
-                const estrellas = cant > 0 ? "⭐".repeat(Math.round(cant)) : '<small style="color:#999">Sin votos</small>';
+                const estrellas = cant > 0 ? "⭐".repeat(Math.round(cant)) : '<span style="color:#999; font-size:0.8rem;">Sin valoraciones</span>';
                 return `<div class="card">
                     <div class="estrellas-profe">${estrellas}</div>
                     <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
                     <p style="color:var(--azul); font-weight:bold; margin: 5px 0;">${p.titulo}</p>
                     <p style="color:#666; font-size:0.9rem;">📍 ${p.ciudad}</p>
-                    <a href="aviso.html?id=${p.id}" class="btn btn-azul" style="border-radius:10px; width:100%; box-sizing:border-box; text-align:center;">Ver Perfil</a>
+                    <a href="aviso.html?id=${p.id}" class="btn btn-azul" style="border-radius: 10px; margin-top: auto; width: 100%; box-sizing: border-box; text-align:center;">Ver Perfil</a>
                 </div>`;
             }).join("");
         }
+
         function filtrar() {
             const t = document.getElementById("buscador").value.toLowerCase();
             render(dataP.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
