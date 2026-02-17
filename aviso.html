@@ -3,63 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil del Docente - ProfesoresYa</title>
+    <title>Perfil del Docente - Profesores Ya</title>
     <style>
-        :root { --primary-blue: #1a56db; --dark-text: #1f2937; --light-bg: #f9fafb; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: var(--light-bg); color: var(--dark-text); }
-        header { background: white; padding: 1rem 5%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .container { max-width: 800px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h1 { color: var(--primary-blue); margin-bottom: 0.5rem; }
-        .rating { color: #ffc107; font-size: 1.2rem; margin-bottom: 1rem; }
-        .titulo-aviso { font-weight: bold; font-size: 1.3rem; margin: 1.5rem 0 1rem 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 5px; }
-        .descripcion { line-height: 1.6; white-space: pre-wrap; color: #4b5563; }
-        .btn-volver { display: inline-block; margin-top: 2rem; text-decoration: none; color: var(--primary-blue); font-weight: bold; }
+        :root { --azul: #1a56db; --gris: #f3f4f6; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); padding-bottom: 50px; }
+        header { background: white; padding: 1rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--azul); margin-bottom: 20px; background: #eee; }
+        h1 { color: var(--azul); margin: 10px 0; }
+        .materia { font-size: 1.4rem; font-weight: bold; color: #4b5563; margin-bottom: 20px; }
+        .descripcion { text-align: left; background: #f9fafb; padding: 25px; border-radius: 10px; border-left: 6px solid var(--azul); white-space: pre-wrap; font-size: 1.1rem; line-height: 1.6; }
+        .btn-volver { display: inline-block; margin-top: 25px; color: var(--azul); font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
+    <header><a href="index.html" style="text-decoration:none; color:var(--azul); font-weight:800; font-size:1.5rem;">🎓 Profesores Ya</a></header>
+    <div class="container" id="perfil">Cargando perfil del docente...</div>
 
-<header>
-    <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary-blue);">🎓 ProfesoresYa</div>
-</header>
+    <script>
+        const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
 
-<div class="container" id="perfil-contenido">
-    <p>Cargando perfil...</p>
-</div>
-
-<script>
-    const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-
-    // Obtener el ID del profesor de la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const idProfesor = urlParams.get('id');
-
-    if (!idProfesor) {
-        document.getElementById("perfil-contenido").innerHTML = "<p>Profesor no encontrado.</p>";
-    } else {
-        fetch(URL_SHEET)
-        .then(r => r.json())
-        .then(data => {
-            const docente = data.find(p => p.id == idProfesor);
-            if (docente) {
-                document.getElementById("perfil-contenido").innerHTML = `
-                    <h1>${docente.nombre} ${docente.apellido}</h1>
-                    <div class="rating">${docente.tipo}</div>
-                    <p>📍 ${docente.ciudad}</p>
-                    
-                    <div class="titulo-aviso">${docente.titulo}</div>
-                    <div class="descripcion">${docente.descripcion}</div>
-                    
+        fetch(URL_S).then(r => r.json()).then(data => {
+            const p = data.find(item => item.id == id);
+            if (p) {
+                // Si hay foto, la muestra. Si no, usa un icono.
+                const imagen = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div class="foto-perfil" style="display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:4rem;">👤</div>`;
+                
+                document.getElementById("perfil").innerHTML = `
+                    ${imagen}
+                    <h1>${p.nombre} ${p.apellido}</h1>
+                    <div class="materia">${p.titulo}</div>
+                    <p style="font-size:1.1rem;">📍 <strong>Ubicación:</strong> ${p.ciudad}</p>
+                    <div class="descripcion">${p.descripcion}</div>
                     <a href="index.html" class="btn-volver">← Volver a la lista</a>
                 `;
             } else {
-                document.getElementById("perfil-contenido").innerHTML = "<p>Docente no encontrado o no está activo.</p>";
+                document.getElementById("perfil").innerHTML = "<h1>No se encontró el docente</h1>";
             }
-        })
-        .catch(err => {
-            document.getElementById("perfil-contenido").innerHTML = "<p>Error al cargar los datos.</p>";
         });
-    }
-</script>
-
+    </script>
 </body>
 </html>
