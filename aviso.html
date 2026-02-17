@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil del Docente</title>
+    <title>Perfil Docente - Profesores Ya</title>
     <style>
         :root { --azul: #1a56db; --gris: #f3f4f6; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); }
-        .container { max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
-        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--azul); margin-bottom: 20px; }
-        .descripcion { text-align: left; background: #f9fafb; padding: 20px; border-radius: 10px; border-left: 5px solid var(--azul); white-space: pre-wrap; margin-top: 20px; }
+        .container { max-width: 700px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 6px solid var(--azul); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: #eee; }
+        h1 { color: var(--azul); font-size: 2.2rem; margin: 10px 0; }
+        .materia { font-size: 1.4rem; color: #4b5563; font-weight: bold; margin-bottom: 20px; }
+        .descripcion { text-align: left; background: #f9fafb; padding: 25px; border-radius: 15px; border-left: 8px solid var(--azul); white-space: pre-wrap; font-size: 1.1rem; line-height: 1.6; color: #374151; }
+        .volver { display: inline-block; margin-top: 30px; color: var(--azul); font-weight: bold; text-decoration: none; font-size: 1.1rem; }
     </style>
 </head>
 <body>
@@ -22,15 +25,19 @@
         fetch(URL_S).then(r => r.json()).then(data => {
             const p = data.find(item => item.id == id);
             if (p) {
-                const imgTag = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem;">👤</div>`;
+                // Si p.foto tiene contenido, armamos la etiqueta <img>
+                const fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil" alt="Foto perfil">` : `<div class="foto-perfil" style="display:flex;align-items:center;justify-content:center;font-size:4rem;margin: 0 auto 20px;">👤</div>`;
+                
                 document.getElementById("perfil").innerHTML = `
-                    ${imgTag}
+                    ${fotoHtml}
                     <h1>${p.nombre} ${p.apellido}</h1>
-                    <p><strong>${p.titulo}</strong></p>
-                    <p>📍 ${p.ciudad}</p>
+                    <div class="materia">${p.titulo}</div>
+                    <p style="font-size:1.1rem;">📍 <b>${p.ciudad}</b></p>
                     <div class="descripcion">${p.descripcion}</div>
-                    <br><a href="index.html" style="color:var(--azul); font-weight:bold; text-decoration:none;">← Volver</a>
+                    <a href="index.html" class="volver">← Volver a la lista</a>
                 `;
+            } else {
+                document.getElementById("perfil").innerHTML = "<h1>Docente no encontrado</h1><a href='index.html' class='volver'>Volver</a>";
             }
         });
     </script>
