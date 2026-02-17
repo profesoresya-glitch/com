@@ -3,74 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesores Ya - Clases Online y Presenciales</title>
+    <title>Profesores Ya - Inicio</title>
     <style>
-        :root { --azul: #1a56db; --gris: #f3f4f6; --texto: #1f2937; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); color: var(--texto); }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        :root { --azul: #1a56db; --gris: #f3f4f6; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); }
+        header { background: white; padding: 1.2rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--azul); text-decoration: none; }
-        .hero { background: linear-gradient(135deg, var(--azul) 0%, #1e40af 100%); color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; }
-        .hero-text { flex: 1; min-width: 300px; }
-        .hero-text h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; }
-        .hero-img img { width: 100%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .btn { padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; }
-        .btn-blanco { background: white; color: var(--azul); margin-right: 10px; }
-        .btn-borde { border: 2px solid white; color: white; background: transparent; }
-        .seccion-estrellas { background: white; padding: 3rem 5%; text-align: center; border-bottom: 1px solid #ddd; }
-        .seccion-estrellas img { max-width: 250px; margin-bottom: 15px; }
-        .buscador-container { max-width: 600px; margin: -25px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
-        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; box-sizing: border-box; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .estrellas-profe { color: #ffc107; font-size: 1.3rem; margin-bottom: 10px; }
-        footer { background: #111827; color: white; padding: 3rem 5%; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 40px auto; padding: 0 5%; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); text-align: center; }
+        .btn { padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; background: var(--azul); color: white; width: 100%; box-sizing: border-box; margin-top: 15px; }
     </style>
 </head>
 <body>
     <header><a href="#" class="logo">🎓 Profesores Ya</a></header>
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Encontrá tu profe ideal</h1>
-            <p>Conectamos alumnos con docentes calificados.</p>
-            <a href="https://forms.gle/q6p2hujs4EWN7Qew6" class="btn btn-blanco">Soy Estudiante</a>
-            <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn btn-borde">Soy Docente</a>
-        </div>
-        <div class="hero-img"><img src="clase-online.jpg" alt="Hero"></div>
-    </section>
-    <section class="seccion-estrellas">
-        <img src="estrellas.jpg" alt="Estrellas">
-        <p>Calidad educativa asegurada por la comunidad.</p>
-    </section>
-    <div class="buscador-container">
-        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Materia, ciudad o nombre...">
-    </div>
-    <div id="contenedor-profes" class="grid"></div>
-    <footer><p>© 2026 Profesores Ya</p></footer>
+    <div id="contenedor-profes" class="grid">Cargando profesores...</div>
 
     <script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-        let dataP = [];
-        fetch(URL_S).then(r => r.json()).then(d => {
-            dataP = d; // El script ya viene ordenado de Google
-            render(d);
-        });
-        function render(l) {
-            document.getElementById("contenedor-profes").innerHTML = l.map(p => {
-                const c = parseFloat(p.tipo) || 0;
-                let s = c > 0 ? "⭐".repeat(Math.round(c)) : 'Sin valoraciones';
-                return `<div class="card">
-                    <div class="estrellas-profe">${s}</div>
+        fetch(URL_S).then(r => r.json()).then(data => {
+            document.getElementById("contenedor-profes").innerHTML = data.map(p => `
+                <div class="card">
                     <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
-                    <p style="color:var(--azul); font-weight:bold; margin: 5px 0;">${p.titulo}</p>
+                    <p style="color:var(--azul); font-weight:bold; margin: 10px 0;">${p.titulo}</p>
                     <p style="color:#666; font-size:0.9rem;">📍 ${p.ciudad}</p>
-                    <a href="aviso.html?id=${p.id}" class="btn" style="background: var(--azul); color: white; border-radius: 10px; text-align: center; margin-top: auto; padding: 10px; width: 100%; box-sizing: border-box;">Ver Perfil</a>
-                </div>`;
-            }).join("");
-        }
-        function filtrar() {
-            const t = document.getElementById("buscador").value.toLowerCase();
-            render(dataP.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
-        }
+                    <a href="aviso.html?id=${p.id}" class="btn">Ver Perfil</a>
+                </div>
+            `).join("");
+        });
     </script>
 </body>
 </html>
