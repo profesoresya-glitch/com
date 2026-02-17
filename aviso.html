@@ -16,16 +16,17 @@
 </head>
 <body>
     <header><a href="index.html" style="text-decoration:none; color:var(--azul); font-weight:800; font-size:1.5rem;">🎓 Profesores Ya</a></header>
-    <div class="container" id="perfil">Cargando perfil...</div>
+    <div class="container" id="perfil">Cargando perfil del docente...</div>
     <script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         const id = new URLSearchParams(window.location.search).get("id");
         fetch(URL_S).then(r => r.json()).then(data => {
             const p = data.find(item => item.id == id);
             if (p) {
-                const foto = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem; margin-bottom:20px;">👤</div>`;
+                // Si p.foto tiene el link de Drive, lo muestra. Si no, icono.
+                const fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem; margin-bottom:20px;">👤</div>`;
                 document.getElementById("perfil").innerHTML = `
-                    ${foto}
+                    ${fotoHtml}
                     <h1 style="color:var(--azul);">${p.nombre} ${p.apellido}</h1>
                     <h2 style="color:#4b5563;">${p.titulo}</h2>
                     <p>📍 <b>${p.ciudad}</b></p>
