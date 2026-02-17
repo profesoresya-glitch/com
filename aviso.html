@@ -3,44 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil del Docente - Profesores Ya</title>
+    <title>Perfil del Docente</title>
     <style>
         :root { --azul: #1a56db; --gris: #f3f4f6; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); padding-bottom: 50px; }
-        header { background: white; padding: 1rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .container { max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
-        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--azul); margin-bottom: 20px; background: #eee; }
-        h1 { color: var(--azul); margin: 10px 0; }
-        .materia { font-size: 1.4rem; font-weight: bold; color: #4b5563; margin-bottom: 20px; }
-        .descripcion { text-align: left; background: #f9fafb; padding: 25px; border-radius: 10px; border-left: 6px solid var(--azul); white-space: pre-wrap; font-size: 1.1rem; line-height: 1.6; }
-        .btn-volver { display: inline-block; margin-top: 25px; color: var(--azul); font-weight: bold; text-decoration: none; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); }
+        .container { max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--azul); margin-bottom: 20px; }
+        .descripcion { text-align: left; background: #f9fafb; padding: 20px; border-radius: 10px; border-left: 5px solid var(--azul); white-space: pre-wrap; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <header><a href="index.html" style="text-decoration:none; color:var(--azul); font-weight:800; font-size:1.5rem;">🎓 Profesores Ya</a></header>
-    <div class="container" id="perfil">Cargando perfil del docente...</div>
+    <div class="container" id="perfil">Cargando perfil...</div>
 
     <script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get("id");
+        const id = new URLSearchParams(window.location.search).get("id");
 
         fetch(URL_S).then(r => r.json()).then(data => {
             const p = data.find(item => item.id == id);
             if (p) {
-                // Si hay foto, la muestra. Si no, usa un icono.
-                const imagen = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div class="foto-perfil" style="display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:4rem;">👤</div>`;
-                
+                const imgTag = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem;">👤</div>`;
                 document.getElementById("perfil").innerHTML = `
-                    ${imagen}
+                    ${imgTag}
                     <h1>${p.nombre} ${p.apellido}</h1>
-                    <div class="materia">${p.titulo}</div>
-                    <p style="font-size:1.1rem;">📍 <strong>Ubicación:</strong> ${p.ciudad}</p>
+                    <p><strong>${p.titulo}</strong></p>
+                    <p>📍 ${p.ciudad}</p>
                     <div class="descripcion">${p.descripcion}</div>
-                    <a href="index.html" class="btn-volver">← Volver a la lista</a>
+                    <br><a href="index.html" style="color:var(--azul); font-weight:bold; text-decoration:none;">← Volver</a>
                 `;
-            } else {
-                document.getElementById("perfil").innerHTML = "<h1>No se encontró el docente</h1>";
             }
         });
     </script>
