@@ -7,37 +7,31 @@
     <style>
         :root { --azul: #1a56db; --gris: #f3f4f6; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); }
+        header { background: white; padding: 1rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .container { max-width: 700px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
-        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 6px solid var(--azul); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: #eee; }
-        h1 { color: var(--azul); font-size: 2.2rem; margin: 10px 0; }
-        .materia { font-size: 1.4rem; color: #4b5563; font-weight: bold; margin-bottom: 20px; }
-        .descripcion { text-align: left; background: #f9fafb; padding: 25px; border-radius: 15px; border-left: 8px solid var(--azul); white-space: pre-wrap; font-size: 1.1rem; line-height: 1.6; color: #374151; }
-        .volver { display: inline-block; margin-top: 30px; color: var(--azul); font-weight: bold; text-decoration: none; font-size: 1.1rem; }
+        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 6px solid var(--azul); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .descripcion { text-align: left; background: #f9fafb; padding: 25px; border-radius: 15px; border-left: 8px solid var(--azul); white-space: pre-wrap; font-size: 1.1rem; line-height: 1.6; }
+        .volver { display: inline-block; margin-top: 30px; color: var(--azul); font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
+    <header><a href="index.html" style="text-decoration:none; color:var(--azul); font-weight:800; font-size:1.5rem;">🎓 Profesores Ya</a></header>
     <div class="container" id="perfil">Cargando perfil...</div>
-
     <script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         const id = new URLSearchParams(window.location.search).get("id");
-
         fetch(URL_S).then(r => r.json()).then(data => {
             const p = data.find(item => item.id == id);
             if (p) {
-                // Si p.foto tiene contenido, armamos la etiqueta <img>
-                const fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil" alt="Foto perfil">` : `<div class="foto-perfil" style="display:flex;align-items:center;justify-content:center;font-size:4rem;margin: 0 auto 20px;">👤</div>`;
-                
+                const foto = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem; margin-bottom:20px;">👤</div>`;
                 document.getElementById("perfil").innerHTML = `
-                    ${fotoHtml}
-                    <h1>${p.nombre} ${p.apellido}</h1>
-                    <div class="materia">${p.titulo}</div>
-                    <p style="font-size:1.1rem;">📍 <b>${p.ciudad}</b></p>
+                    ${foto}
+                    <h1 style="color:var(--azul);">${p.nombre} ${p.apellido}</h1>
+                    <h2 style="color:#4b5563;">${p.titulo}</h2>
+                    <p>📍 <b>${p.ciudad}</b></p>
                     <div class="descripcion">${p.descripcion}</div>
                     <a href="index.html" class="volver">← Volver a la lista</a>
                 `;
-            } else {
-                document.getElementById("perfil").innerHTML = "<h1>Docente no encontrado</h1><a href='index.html' class='volver'>Volver</a>";
             }
         });
     </script>
