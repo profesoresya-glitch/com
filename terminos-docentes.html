@@ -21,20 +21,17 @@
 
         .btn { padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; }
         .btn-blanco { background: white; color: var(--azul); margin-right: 10px; }
-        .btn-borde { border: 2px solid white; color: white; }
+        .btn-borde { border: 2px solid white; color: white; background: transparent; }
 
         .seccion-estrellas { background: white; padding: 3rem 5%; text-align: center; border-bottom: 1px solid #ddd; }
         .seccion-estrellas img { max-width: 250px; margin-bottom: 15px; }
         .seccion-estrellas p { max-width: 650px; margin: 0 auto; font-size: 1.1rem; color: #4b5563; }
 
         .buscador-container { max-width: 600px; margin: -25px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
-        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; }
+        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; box-sizing: border-box; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px; padding: 0 5%; }
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); display: flex; flex-direction: column; align-items: center; text-align: center; }
-        
-        /* ESTILO PARA LA FOTO DE PERFIL CORREGIDO */
-        .foto-perfil { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid var(--azul); background: #eee; }
         .estrellas-profe { color: #ffc107; font-size: 1.3rem; margin-bottom: 10px; }
 
         .banner-docente { 
@@ -48,9 +45,7 @@
     </style>
 </head>
 <body>
-
     <header><a href="#" class="logo">🎓 Profesores Ya</a></header>
-
     <section class="hero">
         <div class="hero-text">
             <h1>Encontrá tu profe ideal: Presencial y Online</h1>
@@ -58,33 +53,23 @@
             <a href="https://forms.gle/q6p2hujs4EWN7Qew6" class="btn btn-blanco">Soy Estudiante</a>
             <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn btn-borde">Soy Docente</a>
         </div>
-        <div class="hero-img">
-            <img src="clase-online.jpg" alt="Estudiante con auriculares">
-        </div>
+        <div class="hero-img"><img src="clase-online.jpg" alt="Estudiante"></div>
     </section>
-
     <section class="seccion-estrellas">
-        <img src="estrellas.jpg" alt="Sistema de estrellas">
-        <p><strong>¿Cómo funciona?</strong> Nuestros estudiantes califican a los docentes después de cada clase para asegurar la mejor calidad educativa.</p>
+        <img src="estrellas.jpg" alt="Estrellas">
+        <p><strong>¿Cómo funciona?</strong> Nuestros estudiantes califican a los docentes para asegurar calidad.</p>
     </section>
-
     <div class="buscador-container">
         <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Materia, ciudad o nombre...">
     </div>
-
     <div id="contenedor-profes" class="grid"></div>
-
     <section class="banner-docente">
-        <div class="banner-docente-img">
-            <img src="clase-presencial.PNG" alt="Docente dando clase">
-        </div>
+        <img src="clase-presencial.PNG" alt="Docente">
         <div class="banner-text">
             <h2 style="color: var(--azul); font-size: 2.2rem; margin-top: 0;">¿Querés dar clases?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Sumate a nuestra comunidad y empezá a recibir alumnos hoy mismo. ¡Es gratis!</p>
             <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn" style="background: var(--azul); color: white; border-radius: 50px;">Publicar mi aviso gratis</a>
         </div>
     </section>
-
     <footer><p>© 2026 Profesores Ya - Conectando conocimiento.</p></footer>
 
     <script>
@@ -92,7 +77,6 @@
         let dataP = [];
 
         fetch(URL_S).then(r => r.json()).then(d => {
-            // ORDENAR POR RANKING (MAYOR A MENOR)
             dataP = d.sort((a, b) => (b.ranking || 0) - (a.ranking || 0));
             render(dataP);
         });
@@ -101,12 +85,7 @@
             document.getElementById("contenedor-profes").innerHTML = l.map(p => {
                 const c = parseFloat(p.tipo) || 0;
                 let s = c > 0 ? "⭐".repeat(Math.round(c)) : '<span style="color:#999; font-size:0.8rem;">Sin valoraciones</span>';
-                
-                // Mostrar foto si existe, sino un placeholder
-                const fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil" alt="Profe">` : `<div class="foto-perfil" style="display:flex;align-items:center;justify-content:center;font-size:2rem;color:#ccc;">👤</div>`;
-
                 return `<div class="card">
-                    ${fotoHtml}
                     <div class="estrellas-profe">${s}</div>
                     <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
                     <p style="color:var(--azul); font-weight:bold; margin: 5px 0;">${p.titulo}</p>
