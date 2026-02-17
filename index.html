@@ -7,45 +7,35 @@
     <style>
         :root { --azul: #1a56db; --gris: #f3f4f6; --texto: #1f2937; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); color: var(--texto); }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--azul); text-decoration: none; }
 
-        /* HERO: ESTUDIANTE CON AURICULARES (clase-online.jpg) */
-        .hero { 
-            background: linear-gradient(135deg, var(--azul) 0%, #1e40af 100%); 
-            color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; 
-        }
+        .hero { background: linear-gradient(135deg, var(--azul) 0%, #1e40af 100%); color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; }
         .hero-text { flex: 1; min-width: 300px; }
         .hero-text h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; }
         .hero-img { flex: 1; min-width: 300px; text-align: center; }
         .hero-img img { width: 100%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        .btn { padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; }
+        .btn { padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; text-align: center; border:none; }
         .btn-blanco { background: white; color: var(--azul); margin-right: 10px; }
-        .btn-borde { border: 2px solid white; color: white; }
+        .btn-borde { border: 2px solid white; color: white; background: transparent; }
 
-        /* EXPLICACIÓN ESTRELLITAS (estrellas.jpg) */
         .seccion-estrellas { background: white; padding: 3rem 5%; text-align: center; border-bottom: 1px solid #ddd; }
         .seccion-estrellas img { max-width: 250px; margin-bottom: 15px; }
-        .seccion-estrellas p { max-width: 650px; margin: 0 auto; font-size: 1.1rem; color: #4b5563; }
 
-        /* BUSCADOR */
         .buscador-container { max-width: 600px; margin: -25px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
-        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; }
+        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; box-sizing: border-box; }
 
-        /* GRILLA DE PROFES */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); display: flex; flex-direction: column; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); display: flex; flex-direction: column; align-items: center; text-align: center; }
+        
+        /* ESTILO PARA LA FOTO DE PERFIL */
+        .foto-profe { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; background: #eee; border: 3px solid var(--azul); }
         .estrellas-profe { color: #ffc107; font-size: 1.3rem; margin-bottom: 10px; }
 
-        /* BANNER: DOCENTE DANDO CLASE (clase-presencial.PNG) */
-        .banner-docente { 
-            background: #eef2ff; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap-reverse; 
-            gap: 3rem; margin: 3rem 5%; border-radius: 25px; border: 3px dashed var(--azul); 
-        }
+        .banner-docente { background: #eef2ff; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap-reverse; gap: 3rem; margin: 3rem 5%; border-radius: 25px; border: 3px dashed var(--azul); }
         .banner-docente img { width: 100%; max-width: 400px; border-radius: 15px; }
-        .banner-text { flex: 1; }
-
+        
         footer { background: #111827; color: white; padding: 3rem 5%; text-align: center; }
     </style>
 </head>
@@ -60,31 +50,26 @@
             <a href="https://forms.gle/q6p2hujs4EWN7Qew6" class="btn btn-blanco">Soy Estudiante</a>
             <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn btn-borde">Soy Docente</a>
         </div>
-        <div class="hero-img">
-            <img src="clase-online.jpg" alt="Estudiante con auriculares">
-        </div>
+        <div class="hero-img"><img src="clase-online.jpg" alt="Estudiante"></div>
     </section>
 
     <section class="seccion-estrellas">
-        <img src="estrellas.jpg" alt="Sistema de estrellas">
-        <p><strong>¿Cómo funciona?</strong> Nuestros estudiantes califican a los docentes después de cada clase para asegurar la mejor calidad educativa.</p>
+        <img src="estrellas.jpg" alt="Estrellas">
+        <p><strong>¿Cómo funciona?</strong> Nuestros alumnos califican la calidad educativa.</p>
     </section>
 
     <div class="buscador-container">
         <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Materia, ciudad o nombre...">
     </div>
 
-    <div id="contenedor-profes" class="grid">
-        </div>
+    <div id="contenedor-profes" class="grid"></div>
 
     <section class="banner-docente">
-        <div class="banner-docente-img">
-            <img src="clase-presencial.PNG" alt="Docente dando clase">
-        </div>
+        <img src="clase-presencial.PNG" alt="Docente">
         <div class="banner-text">
             <h2 style="color: var(--azul); font-size: 2.2rem; margin-top: 0;">¿Querés dar clases?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Sumate a nuestra comunidad y empezá a recibir alumnos hoy mismo. ¡Es gratis!</p>
-            <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn" style="background: var(--azul); color: white; border-radius: 50px;">Publicar mi aviso gratis</a>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Sumate y recibí alumnos hoy mismo. ¡Es gratis!</p>
+            <a href="https://forms.gle/JqQvMDWGmhAWMKR36" class="btn" style="background: var(--azul); color: white;">Publicar mi aviso gratis</a>
         </div>
     </section>
 
@@ -95,162 +80,34 @@
         let dataP = [];
 
         fetch(URL_S).then(r => r.json()).then(d => {
-            dataP = d;
-            render(d);
+            // ORDENAR POR RANKING ANTES DE MOSTRAR
+            dataP = d.sort((a, b) => (b.ranking || 0) - (a.ranking || 0));
+            render(dataP);
         });
 
         function render(l) {
             document.getElementById("contenedor-profes").innerHTML = l.map(p => {
                 const c = parseFloat(p.tipo) || 0;
                 let s = c > 0 ? "⭐".repeat(Math.round(c)) : '<span style="color:#999; font-size:0.8rem;">Sin valoraciones</span>';
+                
+                // Si no hay foto, ponemos una imagen por defecto
+                const imgUrl = p.foto || 'https://via.placeholder.com/100?text=Profe';
+
                 return `<div class="card">
+                    <img src="${imgUrl}" class="foto-profe" alt="Foto">
                     <div class="estrellas-profe">${s}</div>
                     <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
                     <p style="color:var(--azul); font-weight:bold; margin: 5px 0;">${p.titulo}</p>
                     <p style="color:#666; font-size:0.9rem;">📍 ${p.ciudad}</p>
-                    <a href="aviso.html?id=${p.id}" class="btn" style="background: var(--azul); color: white; border-radius: 10px; text-align: center; margin-top: auto; padding: 10px;">Ver Perfil</a>
+                    <a href="aviso.html?id=${p.id}" class="btn" style="background: var(--azul); color: white; border-radius: 10px; width: 100%; margin-top: auto; padding: 10px; box-sizing: border-box;">Ver Perfil</a>
                 </div>`;
             }).join("");
         }
 
         function filtrar() {
             const t = document.getElementById("buscador").value.toLowerCase();
-            render(dataP.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesores Ya - Clases Online y Presenciales</title>
-    <style>
-        :root { --primary: #1a56db; --text: #1f2937; --bg: #f3f4f6; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
-        
-        header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
-
-        /* HERO - ESTUDIANTE CON AURICULARES */
-        .hero { 
-            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%); 
-            color: white; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap; gap: 2rem; 
-        }
-        .hero-text { flex: 1; min-width: 300px; }
-        .hero-text h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; }
-        .hero-img { flex: 1; min-width: 300px; text-align: center; }
-        .hero-img img { width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
-
-        .btn { padding: 12px 28px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.3s; border: 2px solid transparent; }
-        .btn-white { background: white; color: var(--primary); margin-right: 12px; }
-        .btn-outline { border: 2px solid white; color: white; }
-
-        /* SECCIÓN EXPLICACIÓN ESTRELLITAS */
-        .explicacion-estrellas { background: white; padding: 3rem 5%; text-align: center; }
-        .explicacion-estrellas img { max-width: 200px; margin-bottom: 1rem; }
-        .explicacion-estrellas p { max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #4b5563; }
-
-        /* BUSCADOR */
-        .search-area { max-width: 700px; margin: -30px auto 40px; padding: 0 5%; position: relative; z-index: 10; }
-        #buscador { width: 100%; padding: 18px 25px; border-radius: 50px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 1.1rem; outline: none; }
-
-        /* TARJETAS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 8px solid var(--primary); }
-        .stars-ranking { color: #ffc107; font-size: 1.3rem; margin-bottom: 8px; }
-        .materia { font-weight: 700; color: var(--primary); font-size: 1.2rem; margin: 8px 0; }
-        .btn-perfil { background: var(--primary); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; margin-top: 15px; font-weight: bold; text-decoration: none; }
-
-        /* BANNER DOCENTE DANDO CLASE */
-        .banner-docente { 
-            background: #eef2ff; padding: 4rem 5%; display: flex; align-items: center; flex-wrap: wrap-reverse; 
-            gap: 3rem; margin: 3rem 5%; border-radius: 25px; border: 3px dashed var(--primary); 
-        }
-        .banner-docente img { width: 100%; max-width: 400px; border-radius: 15px; }
-        .banner-docente-text { flex: 1; }
-
-        footer { background: #111827; color: white; padding: 3rem 5%; text-align: center; }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="#" class="logo">🎓 Profesores Ya</a>
-    </header>
-
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Encontrá tu profe ideal: Presencial y Online</h1>
-            <p>Conectamos alumnos con los mejores docentes particulares. Sin comisiones.</p>
-            <button onclick="abrirM('alumno')" class="btn btn-white">Soy Estudiante</button>
-            <button onclick="abrirM('docente')" class="btn btn-outline">Soy Docente</button>
-        </div>
-        <div class="hero-img">
-            <img src="estudiante-auriculares.jpg" alt="Estudiante estudiando">
-        </div>
-    </section>
-
-    <section class="explicacion-estrellas">
-        <img src="estrellitas.jpg" alt="Sistema de estrellas">
-        <p><strong>Calidad garantizada:</strong> Los alumnos califican a los docentes según su experiencia, ayudando a la comunidad a elegir siempre lo mejor.</p>
-    </section>
-
-    <div class="search-area">
-        <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 ¿Qué materia o ciudad buscás?">
-    </div>
-
-    <div id="contenedor-profes" class="grid">
-        </div>
-
-    <section class="banner-docente">
-        <div class="banner-docente-img">
-            <img src="docente-clase.jpg" alt="Docente trabajando">
-        </div>
-        <div class="banner-docente-text">
-            <h2 style="color: var(--primary); font-size: 2.2rem; margin-top: 0;">¿Querés dar clases?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Sumate a Profesores Ya y empezá a recibir consultas de alumnos hoy mismo. ¡Es gratis!</p>
-            <button onclick="abrirM('docente')" class="btn" style="background: var(--primary); color: white; border-radius: 50px;">Publicar mi aviso</button>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 Profesores Ya - Conectando conocimiento.</p>
-    </footer>
-
-    <script>
-        const URL_SHEET = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-        let profesoresData = [];
-
-        fetch(URL_SHEET).then(r => r.json()).then(data => {
-            profesoresData = data;
-            render(data);
-        });
-
-        function render(lista) {
-            const div = document.getElementById("contenedor-profes");
-            div.innerHTML = lista.map(p => {
-                const cal = parseFloat(p.tipo) || 0;
-                let stars = cal > 0 ? "⭐".repeat(Math.round(cal)) : '<span style="color:#999; font-size:0.8rem;">Sin calificaciones</span>';
-                return `
-                <div class="card">
-                    <div class="stars-ranking">${stars}</div>
-                    <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
-                    <p class="materia">${p.titulo}</p>
-                    <p style="color:#666; font-size:0.9rem;">📍 ${p.ciudad}</p>
-                    <a href="aviso.html?id=${p.id}" class="btn-perfil">Ver Perfil</a>
-                </div>`;
-            }).join("");
-        }
-
-        function filtrar() {
-            const t = document.getElementById("buscador").value.toLowerCase();
-            render(profesoresData.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t)));
-        }
-
-        function abrirM(tipo) {
-            if(tipo === 'alumno') window.location.href = "https://forms.gle/q6p2hujs4EWN7Qew6";
-            else window.location.href = "https://forms.gle/JqQvMDWGmhAWMKR36";
+            const filtrados = dataP.filter(p => (p.nombre+p.apellido+p.titulo+p.ciudad).toLowerCase().includes(t));
+            render(filtrados);
         }
     </script>
 </body>
