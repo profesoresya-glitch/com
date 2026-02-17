@@ -5,31 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profesores Ya - Inicio</title>
     <style>
-        :root { --azul: #1a56db; --gris: #f3f4f6; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); }
-        header { background: white; padding: 1.2rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--azul); text-decoration: none; }
+        :root { --azul: #1a56db; --gris: #f3f4f6; --texto: #1f2937; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); color: var(--texto); }
+        header { background: white; padding: 1.2rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--azul); text-decoration: none; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 40px auto; padding: 0 5%; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 6px solid var(--azul); text-align: center; }
-        .btn { padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; display: inline-block; text-decoration: none; background: var(--azul); color: white; width: 100%; box-sizing: border-box; margin-top: 15px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 8px solid var(--azul); display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .materia { color: var(--azul); font-weight: bold; font-size: 1.1rem; margin: 10px 0; }
+        .btn { background: var(--azul); color: white; padding: 12px; border-radius: 10px; text-decoration: none; width: 100%; font-weight: bold; margin-top: auto; border: none; }
+        #buscador { display: block; width: 90%; max-width: 600px; margin: 20px auto; padding: 15px 25px; border-radius: 50px; border: 1px solid #ddd; font-size: 1.1rem; outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
-    <header><a href="#" class="logo">🎓 Profesores Ya</a></header>
-    <div id="contenedor-profes" class="grid">Cargando profesores...</div>
+    <header><a href="index.html" class="logo">🎓 Profesores Ya</a></header>
+    <input type="text" id="buscador" onkeyup="filtrar()" placeholder="🔍 Materia, ciudad o nombre...">
+    <div id="contenedor-profes" class="grid">Cargando docentes...</div>
 
     <script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
-        fetch(URL_S).then(r => r.json()).then(data => {
-            document.getElementById("contenedor-profes").innerHTML = data.map(p => `
+        let dataP = [];
+
+        fetch(URL_S)
+            .then(r => r.json())
+            .then(d => {
+                // SEGURIDAD: Ordenamos por ranking (mayor a menor) al recibir
+                dataP = d.sort((a, b) => (b.ranking || 0) - (a.ranking || 0));
+                render(dataP);
+            });
+
+        function render(l) {
+            document.getElementById("contenedor-profes").innerHTML = l.map(p => `
                 <div class="card">
-                    <h3 style="margin:0;">${p.nombre} ${p.apellido}</h3>
-                    <p style="color:var(--azul); font-weight:bold; margin: 10px 0;">${p.titulo}</p>
-                    <p style="color:#666; font-size:0.9rem;">📍 ${p.ciudad}</p>
+                    <h2 style="margin:0; font-size: 1.4rem;">${p.nombre} ${p.apellido}</h2>
+                    <p class="materia">${p.titulo}</p>
+                    <p style="color:#666; font-size: 0.9rem;">📍 ${p.ciudad}</p>
                     <a href="aviso.html?id=${p.id}" class="btn">Ver Perfil</a>
                 </div>
             `).join("");
-        });
+        }
+
+        function filtrar() {
+            const t = document.getElementById("buscador").value.toLowerCase();
+            const filtrados = dataP.filter(p => (p.nombre + p.apellido + p.titulo + p.ciudad).toLowerCase().includes(t));
+            render(filtrados);
+        }
     </script>
 </body>
 </html>
