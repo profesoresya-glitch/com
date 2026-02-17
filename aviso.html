@@ -9,22 +9,34 @@
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gris); }
         header { background: white; padding: 1rem 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .container { max-width: 700px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
-        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 6px solid var(--azul); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* Estilo de la foto para que se vea circular y profesional */
+        .foto-perfil { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 6px solid var(--azul); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background:#eee; }
         .descripcion { text-align: left; background: #f9fafb; padding: 25px; border-radius: 15px; border-left: 8px solid var(--azul); white-space: pre-wrap; font-size: 1.1rem; line-height: 1.6; }
         .volver { display: inline-block; margin-top: 30px; color: var(--azul); font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
     <header><a href="index.html" style="text-decoration:none; color:var(--azul); font-weight:800; font-size:1.5rem;">🎓 Profesores Ya</a></header>
-    <div class="container" id="perfil">Cargando perfil del docente...</div>
+    <div class="container" id="perfil">Cargando perfil...</div>
+
     <script>
-        const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
+        // TU URL DE GOOGLE APPS SCRIPT
+        const URL_S = "TU_URL_DE_IMPLEMENTACION_AQUI"; 
         const id = new URLSearchParams(window.location.search).get("id");
-        fetch(URL_S).then(r => r.json()).then(data => {
+
+        fetch(URL_S)
+        .then(r => r.json())
+        .then(data => {
             const p = data.find(item => item.id == id);
             if (p) {
-                // Si p.foto tiene el link de Drive, lo muestra. Si no, icono.
-                const fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem; margin-bottom:20px;">👤</div>`;
+                // Lógica para mostrar la foto o un icono si no hay foto
+                let fotoHtml = '';
+                if (p.foto && p.foto !== "") {
+                    fotoHtml = `<img src="${p.foto}" class="foto-perfil" onerror="this.src='https://via.placeholder.com/180?text=Docente'">`;
+                } else {
+                    fotoHtml = `<div style="font-size:5rem; margin-bottom:20px;">👤</div>`;
+                }
+
                 document.getElementById("perfil").innerHTML = `
                     ${fotoHtml}
                     <h1 style="color:var(--azul);">${p.nombre} ${p.apellido}</h1>
@@ -33,7 +45,13 @@
                     <div class="descripcion">${p.descripcion}</div>
                     <a href="index.html" class="volver">← Volver a la lista</a>
                 `;
+            } else {
+                document.getElementById("perfil").innerHTML = "Profesor no encontrado.";
             }
+        })
+        .catch(err => {
+            document.getElementById("perfil").innerHTML = "Error al cargar los datos.";
+            console.error(err);
         });
     </script>
 </body>
