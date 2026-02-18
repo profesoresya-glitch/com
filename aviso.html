@@ -19,8 +19,8 @@
     <header><a href="index.html" style="text-decoration:none; color:var(--azul); font-weight:800; font-size:1.5rem;">🎓 Profesores Ya</a></header>
     <div class="container" id="perfil">Cargando perfil del docente...</div>
 
-    <script>
-        // Esta es la URL de tu Script de Google (la que ya tenés)
+  <script>
+        // URL de tu Script de Google
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec"; 
         const id = new URLSearchParams(window.location.search).get("id");
 
@@ -28,8 +28,9 @@
         .then(r => r.json())
         .then(data => {
             const p = data.find(item => item.id == id);
-            if (p) {
-                // Aquí es donde sucede la magia: si hay foto, la pone en la etiqueta <img>
+            
+            // FILTRO DE SEGURIDAD: Solo mostrar si el ranking es 0 o más
+            if (p && (p.ranking || 0) >= 0) {
                 let fotoHtml = p.foto ? `<img src="${p.foto}" class="foto-perfil">` : `<div style="font-size:5rem; margin-bottom:20px;">👤</div>`;
 
                 document.getElementById("perfil").innerHTML = `
@@ -40,7 +41,18 @@
                     <div class="descripcion">${p.descripcion}</div>
                     <a href="index.html" class="volver">← Volver a la lista</a>
                 `;
+            } else {
+                // Mensaje de seguridad para perfiles bloqueados o inexistentes
+                document.getElementById("perfil").innerHTML = `
+                    <div style="font-size:4rem; margin-bottom:20px;">🚫</div>
+                    <h2 style="color:var(--azul);">Perfil no disponible</h2>
+                    <p>Este aviso ha sido retirado o se encuentra en proceso de revisión.</p>
+                    <a href="index.html" class="volver">← Volver al inicio</a>
+                `;
             }
+        })
+        .catch(error => {
+            document.getElementById("perfil").innerHTML = "Error al conectar con la base de datos.";
         });
     </script>
 </body>
