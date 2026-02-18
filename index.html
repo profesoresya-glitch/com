@@ -116,12 +116,14 @@
         </div>
     </footer>
 
-    <script>
+<script>
         const URL_S = "https://script.google.com/macros/s/AKfycbw4P4VylmH_RimZpQvRNp58Zw1LaAmKby84R_A0u__u3le2LfLLx6cpK6q6V_1TUtbI/exec";
         let dataP = [];
 
         fetch(URL_S).then(r => r.json()).then(d => {
-            dataP = d.sort((a, b) => (b.ranking || 0) - (a.ranking || 0));
+            // FILTRO DE SEGURIDAD: Solo pasan los aprobados (ranking 0 o más)
+            dataP = d.filter(p => (p.ranking || 0) >= 0)
+                     .sort((a, b) => (b.ranking || 0) - (a.ranking || 0));
             render(dataP);
         });
 
